@@ -1,6 +1,6 @@
 # flutter_video_player
 
-flutter、video、player
+flutter、video、player，在iOS平台上开发，安卓（Android）的还没有测试
 
 ## Getting Started
 
