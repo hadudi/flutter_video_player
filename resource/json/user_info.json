@@ -1,0 +1,14 @@
+{
+    "requestId": "",
+    "code": "0000",
+    "msg": "Success",
+    "data": {
+      "user": {
+        "userId": 10000000000001,
+        "pwd": "123456",
+        "nickName": "与君共勉",
+        "mobile": "1999999999"
+      },
+      "token": "1111111111xxxxxxx0000000000"
+    }
+  }

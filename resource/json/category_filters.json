@@ -1,0 +1,278 @@
+{
+  "requestId": "",
+  "code": "0000",
+  "msg": "Success",
+  "recordsTotal": null,
+  "data": [
+    {
+      "filterType": "sort",
+      "dramaFilterItemList": [
+        {
+          "displayName": "最热播放",
+          "value": "hot"
+        },
+        {
+          "displayName": "最近更新",
+          "value": "new"
+        },
+        {
+          "displayName": "最受好评",
+          "value": "score"
+        },
+        {
+          "displayName": "本季新剧",
+          "value": "season_new"
+        }
+      ]
+    },
+    {
+      "filterType": "dramaType",
+      "dramaFilterItemList": [
+        {
+          "displayName": "全部",
+          "value": ""
+        },
+        {
+          "displayName": "电视剧",
+          "value": "TV"
+        },
+        {
+          "displayName": "电影",
+          "value": "MOVIE"
+        },
+        {
+          "displayName": "综艺",
+          "value": "VARIETY"
+        },
+        {
+          "displayName": "脱口秀",
+          "value": "TALK"
+        },
+        {
+          "displayName": "纪录片",
+          "value": "DOCUMENTARY"
+        },
+        {
+          "displayName": "动漫",
+          "value": "COMIC"
+        },
+        {
+          "displayName": "迷你剧",
+          "value": "MINISERIES"
+        },
+        {
+          "displayName": "网剧",
+          "value": "SETI"
+        }
+      ]
+    },
+    {
+      "filterType": "area",
+      "dramaFilterItemList": [
+        {
+          "displayName": "全部",
+          "value": ""
+        },
+        {
+          "displayName": "美国",
+          "value": "美国"
+        },
+        {
+          "displayName": "英国",
+          "value": "英国"
+        },
+        {
+          "displayName": "韩国",
+          "value": "韩国"
+        },
+        {
+          "displayName": "日本",
+          "value": "日本"
+        },
+        {
+          "displayName": "泰国",
+          "value": "泰国"
+        },
+        {
+          "displayName": "内地",
+          "value": "中国大陆"
+        },
+        {
+          "displayName": "中国香港",
+          "value": "中国香港"
+        },
+        {
+          "displayName": "中国台湾",
+          "value": "中国台湾"
+        },
+        {
+          "displayName": "其他",
+          "value": "其他"
+        }
+      ]
+    },
+    {
+      "filterType": "plotType",
+      "dramaFilterItemList": [
+        {
+          "displayName": "全部",
+          "value": ""
+        },
+        {
+          "displayName": "剧情",
+          "value": "剧情"
+        },
+        {
+          "displayName": "喜剧",
+          "value": "喜剧"
+        },
+        {
+          "displayName": "动作",
+          "value": "动作"
+        },
+        {
+          "displayName": "冒险",
+          "value": "冒险"
+        },
+        {
+          "displayName": "爱情",
+          "value": "爱情"
+        },
+        {
+          "displayName": "歌舞",
+          "value": "歌舞"
+        },
+        {
+          "displayName": "恐怖",
+          "value": "恐怖"
+        },
+        {
+          "displayName": "科幻",
+          "value": "科幻"
+        },
+        {
+          "displayName": "奇幻",
+          "value": "奇幻"
+        },
+        {
+          "displayName": "动画",
+          "value": "动画"
+        },
+        {
+          "displayName": "悬疑",
+          "value": "悬疑"
+        },
+        {
+          "displayName": "惊悚",
+          "value": "惊悚"
+        },
+        {
+          "displayName": "犯罪",
+          "value": "犯罪"
+        },
+        {
+          "displayName": "同性",
+          "value": "同性"
+        },
+        {
+          "displayName": "传记",
+          "value": "传记"
+        },
+        {
+          "displayName": "历史",
+          "value": "历史"
+        },
+        {
+          "displayName": "战争",
+          "value": "战争"
+        },
+        {
+          "displayName": "灾难",
+          "value": "灾难"
+        },
+        {
+          "displayName": "美食",
+          "value": "美食"
+        },
+        {
+          "displayName": "真人秀",
+          "value": "真人秀"
+        }
+      ]
+    },
+    {
+      "filterType": "year",
+      "dramaFilterItemList": [
+        {
+          "displayName": "全部",
+          "value": ""
+        },
+        {
+          "displayName": "2021",
+          "value": "2021"
+        },
+        {
+          "displayName": "2020",
+          "value": "2020"
+        },
+        {
+          "displayName": "2019",
+          "value": "2019"
+        },
+        {
+          "displayName": "2018",
+          "value": "2018"
+        },
+        {
+          "displayName": "2017",
+          "value": "2017"
+        },
+        {
+          "displayName": "2016",
+          "value": "2016"
+        },
+        {
+          "displayName": "2015",
+          "value": "2015"
+        },
+        {
+          "displayName": "2014-2011",
+          "value": "2014-2011"
+        },
+        {
+          "displayName": "2010-2000",
+          "value": "2010-2000"
+        },
+        {
+          "displayName": "90年代",
+          "value": "90年代"
+        },
+        {
+          "displayName": "80年代",
+          "value": "80年代"
+        }
+      ]
+    },
+    {
+      "filterType": "serializedStatus",
+      "dramaFilterItemList": [
+        {
+          "displayName": "全部",
+          "value": ""
+        },
+        {
+          "displayName": "连载",
+          "value": "0"
+        },
+        {
+          "displayName": "完结",
+          "value": "1"
+        },
+        {
+          "displayName": "未开播",
+          "value": "2"
+        }
+      ]
+    }
+  ]
+}

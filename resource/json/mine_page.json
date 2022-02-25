@@ -1,0 +1,63 @@
+{
+  "requestId": "",
+  "code": "0000",
+  "msg": "Success",
+  "recordsTotal": null,
+  "data": {
+    "bannerTop": [],
+    "sections": [
+      {
+        "id": 4358,
+        "display": "SCROLL",
+        "moreText": "",
+        "name": "其他",
+        "position": 23,
+        "sectionType": "MAGIC_CUBE",
+        "sequence": 1,
+        "targetId": null,
+        "targetType": null,
+        "displayTitle": "1",
+        "sectionContents": [
+          {
+            "title": "我的收藏",
+            "icon": "http://img.juquanquanapp.com/img/img/20211130/o_07a2f3f668464fd398cfc48a65c60754.png",
+            "targetType": "ASSIGN_PAGE",
+            "targetId": ""
+          },
+          {
+            "title": "设置",
+            "icon": "http://img.juquanquanapp.com/img/img/20210915/o_aa7d7ab579174a43843b919634c56f59.png",
+            "targetType": "ASSIGN_PAGE",
+            "targetId": ""
+          },
+          {
+            "title": "问题反馈",
+            "icon": "http://img.juquanquanapp.com/img/img/20210915/o_b627939ccc564971969dc8882de6bac9.png",
+            "targetType": "H5",
+            "targetId": "http%3A%2F%2Fmobile.juquanquanapp.com%2FcontactCustomerService"
+          },
+          {
+            "title": "儿童隐私政策",
+            "icon": "http://img.juquanquanapp.com/img/img/20210915/o_9ae0cb77f0384a3ea64ea97c032a102c.png",
+            "targetType": "H5",
+            "targetId": "https%3A%2F%2Fmobile.juquanquanapp.com%2Fagree%2FCHILDREN_PRIVACY_JQQ"
+          },
+          {
+            "title": "隐私政策",
+            "icon": "http://img.juquanquanapp.com/img/img/20210915/o_56566a1281264d9bbec66ff286f08e5f.png",
+            "targetType": "H5",
+            "targetId": "https%3A%2F%2Fmobile.juquanquanapp.com%2Fagree%2FCONCEAL_JQQ_IOS"
+          },
+          {
+            "title": "用户协议",
+            "icon": "http://img.juquanquanapp.com/img/img/20210915/o_a39d6f2d352d4f3db0159b700a5635de.png",
+            "targetType": "H5",
+            "targetId": "https%3A%2F%2Fmobile.juquanquanapp.com%2Fagree%2FUSERAGREE_JQQ_IOS"
+          }
+        ],
+        "startTime": null,
+        "endTime": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "requestId": "",
+  "code": "0000",
+  "msg": "Success",
+  "data": {
+    "playInfo": {
+      "title": "神医喜来乐第1集",
+      "url": "https://vd4.bdstatic.com/mda-mhhu5st92hmp1an5/default/hksr/1639922751/mda-mhhu5st92hmp1an5.mp4?v_from_s=hkapp-haokan-nanjing&auth_key=1645698585-0-0-49364b64cb374e0a3c6751d47930bd38&bcevod_channel=searchbox_feed&cd=0&pd=1&pt=3&logid=3585533028&vid=2015598530162537812&abtest=17451_1-3000216_1",
+      "currentQuality": "LD",
+      "episodeSid": 10001,
+      "startingLength": 0
+    },
+    "qualityList": [
+      {
+        "quality": "FD",
+        "qualityName": "标清",
+        "url": "https://vd4.bdstatic.com/mda-mhhu5st92hmp1an5/default/hksr/1639922751/mda-mhhu5st92hmp1an5.mp4?v_from_s=hkapp-haokan-nanjing&auth_key=1645698585-0-0-49364b64cb374e0a3c6751d47930bd38&bcevod_channel=searchbox_feed&cd=0&pd=1&pt=3&logid=3585533028&vid=2015598530162537812&abtest=17451_1-3000216_1"
+      },
+      {
+        "quality": "LD",
+        "qualityName": "高清",
+        "url": "https://vd4.bdstatic.com/mda-mhhu5st92hmp1an5/hd/hksr/1639922751/mda-mhhu5st92hmp1an5.mp4?v_from_s=hkapp-haokan-nanjing&auth_key=1645698585-0-0-a58203b02781cb5a14fbb82860773399&bcevod_channel=searchbox_feed&cd=0&pd=1&pt=3&logid=3585533028&vid=2015598530162537812&abtest=17451_1-3000216_1"
+      },
+      {
+        "quality": "AI_720",
+        "qualityName": "超清",
+        "url": "https://vd4.bdstatic.com/mda-mhhu5st92hmp1an5/sc/hksr/1639922751/mda-mhhu5st92hmp1an5.mp4?v_from_s=hkapp-haokan-nanjing&auth_key=1645698585-0-0-1533a66c3606a63c4c979853abf0ff95&bcevod_channel=searchbox_feed&cd=0&pd=1&pt=3&logid=3585533028&vid=2015598530162537812&abtest=17451_1-3000216_1"
+      },
+      {
+        "quality": "AI_1080",
+        "qualityName": "蓝光",
+        "url": "https://vd4.bdstatic.com/mda-mhhu5st92hmp1an5/1080p/hksr/1639922751/mda-mhhu5st92hmp1an5.mp4?v_from_s=hkapp-haokan-nanjing&auth_key=1645698585-0-0-d833821a4a0d79de5c6a0134efd386e3&bcevod_channel=searchbox_feed&cd=0&pd=1&pt=3&logid=3585533028&vid=2015598530162537812&abtest=17451_1-3000216_1"
+      }
+    ]
+  }
+}
