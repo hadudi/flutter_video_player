@@ -1,6 +1,6 @@
 # flutter_video_player
 
-# flutter、video、player，在iOS平台上开发，安卓（Android）的还没有测试
+# 完整的flutter项目，包含首页，登录，数据库sql,hive，视频播放，全屏播放，历史记录等功能，video_player、video、player，在iOS平台上开发，安卓（Android）的还没有测试
 ![全屏播放]<img src="https://user-images.githubusercontent.com/11499157/155688196-c0aca3d7-f582-47b4-a1f7-22123ac16e2f.png">
 ![首页]<img src="https://user-images.githubusercontent.com/11499157/155687971-d8c36272-c501-4e31-8aca-7dbca2dabbef.png" width = "30%" height="30%">
 ![筛选页]<img src="https://user-images.githubusercontent.com/11499157/155688007-dc6382d0-8af7-4cb0-b712-da798f5b3028.png" width = "30%" height="30%">
