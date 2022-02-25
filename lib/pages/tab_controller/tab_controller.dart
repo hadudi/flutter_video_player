@@ -51,23 +51,23 @@ class _RootTabViewControllerState extends State<RootTabViewController> {
           title: R.Str.home,
           icon: Icons.home,
         ),
-        JJTabItem(
-          type: PageType.hotVideo,
-          title: null,
-          icon: Icons.video_collection,
-          iconSize: 34,
-          color: Colors.orange,
-        ),
+        // JJTabItem(
+        //   type: PageType.hotVideo,
+        //   title: null,
+        //   icon: Icons.video_collection,
+        //   iconSize: 34,
+        //   color: Colors.orange,
+        // ),
         JJTabItem(
           type: PageType.category,
           title: R.Str.category,
           icon: Icons.category,
         ),
-        JJTabItem(
-          type: PageType.comment,
-          title: R.Str.hotComment,
-          icon: Icons.comment,
-        ),
+        // JJTabItem(
+        //   type: PageType.comment,
+        //   title: R.Str.hotComment,
+        //   icon: Icons.comment,
+        // ),
         JJTabItem(
           type: PageType.mine,
           title: R.Str.mine,

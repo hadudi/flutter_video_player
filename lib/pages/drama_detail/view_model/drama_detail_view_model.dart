@@ -52,7 +52,7 @@ class DramaDetailViewModel {
     if (other is DramaDetailViewModel) {
       return false;
     }
-    return true;
+    return false;
   }
 
   @override
