@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart' show rootBundle;
 import 'dart:convert' show jsonDecode;
-import 'package:flutter_video_player/uitl/r_sources.dart';
+import 'package:flutter_video_player/util/r_sources.dart';
 import 'http_response_model.dart';
 
 enum Api {
@@ -80,5 +80,6 @@ class HttpConfig {
         return null;
       }
     }
+    return null;
   }
 }

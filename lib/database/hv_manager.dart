@@ -51,6 +51,7 @@ class HiveManager {
         }
       }
     } catch (e) {}
+    return null;
   }
 
   Future<bool> deleteUserInfo() async {

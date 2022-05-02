@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_video_player/pages/drama_detail/model/video_info_model.dart';
-import 'package:flutter_video_player/uitl/util.dart';
+
+import '../../../util/util.dart';
 
 class ExplosidListView extends StatefulWidget {
   const ExplosidListView({

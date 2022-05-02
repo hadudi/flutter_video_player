@@ -67,5 +67,6 @@ class HomeViewModel implements Request {
     if (model != null) {
       return await handleData(model);
     }
+    return null;
   }
 }

@@ -1,7 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:flutter_video_player/uitl/util.dart';
+import 'package:flutter_video_player/util/util.dart';
 
 class UINavigationBar extends StatelessWidget implements PreferredSizeWidget {
   UINavigationBar({
@@ -100,7 +100,6 @@ class UINavigationBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       );
     }
-
     return Container(
       color: color,
       child: Column(

@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:flutter_video_player/models/models.dart';
@@ -64,11 +65,16 @@ class _BigEyeViewCellState extends State<BigEyeViewCell> {
                   Positioned(
                     child: Swiper(
                       itemBuilder: (context, index) {
-                        return Image.network(
+                        return ExtendedImage.network(
                           widget.modelList?[index].imgUrl ?? '',
                           fit: BoxFit.cover,
                           width: width,
                           height: height,
+                          cacheWidth: width.toInt(),
+                          cacheHeight: height.toInt(),
+                          cacheMaxAge: const Duration(days: 7),
+                          enableLoadState: false,
+                          filterQuality: FilterQuality.medium,
                         );
                       },
                       itemCount: widget.modelList?.length ?? 0,

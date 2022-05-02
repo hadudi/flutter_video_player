@@ -9,7 +9,7 @@ import '../views/video_series_view.dart';
 import '../views/small_screen_placeholder_view.dart';
 import '../../../models/models.dart';
 import '../../../routes/route_manager.dart';
-import '../../../uitl/util.dart';
+import '../../../util/util.dart';
 import '../view_model/drama_detail_view_model.dart';
 
 final GlobalKey playerKey = GlobalKey(debugLabel: 'playerKey');

@@ -4,14 +4,13 @@
 
 import 'dart:async';
 
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_video_player/database/hv_manager.dart';
 import 'pages/splash/splash_page.dart';
 import 'routes/route_manager.dart';
 
-export 'package:flutter_video_player/uitl/r_sources.dart';
+export 'package:flutter_video_player/util/r_sources.dart';
 
 void main() {
   runZonedGuarded(() async {
@@ -19,7 +18,7 @@ void main() {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
         overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top]);
     //滚动性能优化
-    GestureBinding.instance?.resamplingEnabled = true;
+    // GestureBinding.instance?.resamplingEnabled = true;
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
@@ -36,7 +35,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: const SplashScreen(),
       onGenerateRoute: RouteManager.generateRoute,
-      onUnknownRoute: (settings) {},
       showPerformanceOverlay: false,
       debugShowCheckedModeBanner: false,
       navigatorObservers: [CFNavigatorObservers()],

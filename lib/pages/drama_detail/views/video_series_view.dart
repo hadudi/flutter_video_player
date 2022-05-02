@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_video_player/pages/drama_detail/model/video_info_model.dart';
 import 'package:flutter_video_player/pages/drama_detail/page/drama_detail_page.dart';
-import 'package:flutter_video_player/uitl/r_sources.dart';
+import 'package:flutter_video_player/util/r_sources.dart';
 
 typedef SwitchEpisodeCallback = Function(int? episodeId);
 

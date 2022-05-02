@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_video_player/models/models.dart';
 import 'package:flutter_video_player/routes/route_manager.dart';
@@ -87,20 +88,15 @@ class _GuideViewItemCellState extends State<GuideViewItemCell> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(4),
             ),
-            child: Image.network(
+            child: ExtendedImage.network(
               widget.model?.imgUrl ?? '',
               fit: BoxFit.cover,
               width: 160,
               height: 120,
-              frameBuilder: (_, child, frame, wasSynchronouslyLoaded) {
-                if (wasSynchronouslyLoaded) return child;
-                return AnimatedOpacity(
-                  child: child,
-                  opacity: frame == null ? 0 : 1,
-                  duration: const Duration(seconds: 1),
-                  curve: Curves.easeOut,
-                );
-              },
+              cacheWidth: 160,
+              cacheHeight: 120,
+              cacheMaxAge: const Duration(days: 7),
+              enableLoadState: false,
             ),
           ),
           const SizedBox(

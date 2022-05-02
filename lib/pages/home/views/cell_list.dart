@@ -1,16 +1,17 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_video_player/util/r_sources.dart';
 
 import '../model/home_model.dart';
 
 class ListCell extends StatelessWidget {
-  ListCell({
+  const ListCell({
     Key? key,
     this.model,
   }) : super(key: key);
-  SectionContentModel? model;
+  final SectionContentModel? model;
 
   @override
   Widget build(BuildContext context) {
@@ -26,29 +27,20 @@ class ListCell extends StatelessWidget {
                 clipBehavior: Clip.hardEdge,
                 padding: EdgeInsets.zero,
                 decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(4)),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(4),
+                  ),
                 ),
-                child: model?.coverUrl?.isEmpty == true
-                    ? SizedBox(
-                        width: width,
-                        height: height,
-                      )
-                    : Image.network(
-                        model?.coverUrl ?? '',
-                        fit: BoxFit.cover,
-                        width: width,
-                        height: height,
-                        frameBuilder:
-                            (_, child, frame, wasSynchronouslyLoaded) {
-                          if (wasSynchronouslyLoaded) return child;
-                          return AnimatedOpacity(
-                            child: child,
-                            opacity: frame == null ? 0 : 1,
-                            duration: const Duration(seconds: 1),
-                            curve: Curves.easeOut,
-                          );
-                        },
-                      ),
+                child: ExtendedImage.network(
+                  model?.coverUrl ?? '',
+                  fit: BoxFit.cover,
+                  width: width,
+                  height: height,
+                  cacheWidth: width.toInt(),
+                  cacheHeight: height.toInt(),
+                  cacheMaxAge: const Duration(days: 7),
+                  enableLoadState: false,
+                ),
               ),
               Positioned(
                 left: 0,
@@ -69,8 +61,9 @@ class ListCell extends StatelessWidget {
                   clipBehavior: Clip.hardEdge,
                   decoration: BoxDecoration(
                     borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(4),
-                        bottomRight: Radius.circular(4)),
+                      bottomLeft: Radius.circular(4),
+                      bottomRight: Radius.circular(4),
+                    ),
                     gradient: LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,

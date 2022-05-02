@@ -35,11 +35,9 @@ class SmallScreenPlayerPlaceHolderView extends StatelessWidget {
             child: ClipRect(
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                child: Opacity(
-                  opacity: 0.3,
-                  child: Container(
-                    color: Colors.black,
-                  ),
+                blendMode: BlendMode.modulate,
+                child: Container(
+                  color: Colors.black.withOpacity(0.3),
                 ),
               ),
             ),

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_video_player/pages/haokan_video/haokan_home_page.dart';
 import 'package:flutter_video_player/pages/home/page/home_page.dart';
-import 'package:flutter_video_player/pages/hot_comment/hot_comment_page.dart';
 import 'package:flutter_video_player/pages/hot_video/hot_video_page.dart';
 import 'package:flutter_video_player/pages/mine/mine_page.dart';
 
@@ -51,23 +51,23 @@ class _RootTabViewControllerState extends State<RootTabViewController> {
           title: R.Str.home,
           icon: Icons.home,
         ),
-        // JJTabItem(
-        //   type: PageType.hotVideo,
-        //   title: null,
-        //   icon: Icons.video_collection,
-        //   iconSize: 34,
-        //   color: Colors.orange,
-        // ),
+        JJTabItem(
+          type: PageType.hotVideo,
+          title: null,
+          icon: Icons.video_collection,
+          iconSize: 34,
+          color: Colors.orange,
+        ),
         JJTabItem(
           type: PageType.category,
           title: R.Str.category,
           icon: Icons.category,
         ),
-        // JJTabItem(
-        //   type: PageType.comment,
-        //   title: R.Str.hotComment,
-        //   icon: Icons.comment,
-        // ),
+        JJTabItem(
+          type: PageType.comment,
+          title: R.Str.hotComment,
+          icon: Icons.comment,
+        ),
         JJTabItem(
           type: PageType.mine,
           title: R.Str.mine,
@@ -150,13 +150,13 @@ class _RootTabViewControllerState extends State<RootTabViewController> {
         page = const HomePage();
         break;
       case PageType.hotVideo:
-        page = const HotVideoPage();
+        page = const HaoKanHomePage();
         break;
       case PageType.category:
         page = const CategoryViewPage();
         break;
       case PageType.comment:
-        page = const HotCommentPage();
+        page = const HotVideoPage();
         break;
       case PageType.mine:
         page = const MinePageView();

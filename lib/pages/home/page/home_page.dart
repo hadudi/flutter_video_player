@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_video_player/custom/navigationbar.dart';
 import 'package:flutter_video_player/pages/home/view_model/home_view_model.dart';
 import 'package:flutter_video_player/util/util.dart';
@@ -23,7 +22,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // bool changeColor = true;
   late final ScrollController _scrollController;
   late final HomeViewModel viewModel;
 
@@ -75,7 +73,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return _createUI();
+    return Scaffold(
+      body: _createUI(),
+    );
   }
 
   Widget _createUI() {
@@ -110,7 +110,6 @@ class _HomePageState extends State<HomePage> {
                 child: ValueListenableBuilder<bool>(
                   valueListenable: changeColorNotifier,
                   builder: (context, value, child) {
-                    // changeColor = value;
                     return _navigationBar;
                   },
                 ),
@@ -123,15 +122,16 @@ class _HomePageState extends State<HomePage> {
                   constraints: BoxConstraints(
                     maxHeight: Util.instance.contentHeight(),
                   ),
-                  child: EasyRefresh(
-                    firstRefresh: false,
+                  child: RefreshIndicator(
+                    color: null,
+                    backgroundColor: null,
+                    strokeWidth: 0,
                     child: ListView.builder(
                       padding: EdgeInsets.zero,
                       controller: _scrollController,
                       itemCount: viewModel.pageModelList.length,
                       itemBuilder: _itemBuilder,
                       physics: const BouncingScrollPhysics(),
-                      shrinkWrap: true,
                     ),
                     onRefresh: () async {
                       viewModel.requestData().then((value) {

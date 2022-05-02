@@ -147,7 +147,7 @@ class SectionContentModel {
   int? dramaId;
   String? dramaType;
   String? icon;
-  double? score;
+  String? score;
   String? subTitle;
   String? targetId;
   String? targetType;
@@ -156,12 +156,19 @@ class SectionContentModel {
   String? pictureWidth;
   bool? vipFlag;
 
+  SectionContentModel(
+    this.dramaId,
+    this.title,
+    this.coverUrl,
+    this.score,
+  );
+
   SectionContentModel.fromJson(Map map) {
     coverUrl = map['coverUrl'];
     dramaId = map['dramaId'];
     dramaType = map['dramaType'];
     icon = map['icon'];
-    score = double.tryParse('${map['score']}');
+    score = '${map['score']}';
     subTitle = map['subTitle'];
     targetId = map['targetId'];
     targetType = map['targetType'];

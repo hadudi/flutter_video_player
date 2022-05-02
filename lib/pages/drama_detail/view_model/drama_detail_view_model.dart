@@ -1,4 +1,5 @@
 import 'package:flutter_video_player/http/http_config.dart';
+import 'package:flutter_video_player/http/http_manager.dart';
 import 'package:flutter_video_player/http/http_response_model.dart';
 import 'package:flutter_video_player/pages/drama_detail/model/play_info_model.dart';
 import 'package:flutter_video_player/pages/drama_detail/model/video_info_model.dart';
@@ -9,6 +10,15 @@ class DramaDetailViewModel {
 
   /// 请求剧集信息
   Future<VideoInfoModel?> requestData({required String dramaId}) async {
+    // if (dramaId.length > 10) {
+    //   ResponseCallBack? data = await HttpManager.request(req: NetApi.haokanDramaDetail, queryParams: {
+    //     'vid': dramaId,
+    //     '_format': 'json',
+    //   },);
+    //   if (data.model != null) {
+
+    //   }
+    // }
     ResponseModel? model = await HttpConfig.request(api: Api.dramaDetail);
     if (model != null) {
       videoInfoModel = VideoInfoModel.fromJson(model.map);

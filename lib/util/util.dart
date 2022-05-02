@@ -18,7 +18,7 @@ class Util {
       _devicePixelRatio;
 
   static bool get isPhoneX =>
-      (WidgetsBinding.instance?.window.viewPadding.top ?? 0) > 40;
+      (WidgetsBinding.instance?.window.padding.top ?? 0) > 60;
 
   /// 图片宽高比
   static const imgRatio = 0.75;

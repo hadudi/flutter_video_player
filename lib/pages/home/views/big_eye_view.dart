@@ -1,5 +1,6 @@
 import 'dart:ui' show ImageFilter;
 
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_video_player/util/util.dart';
 
@@ -40,11 +41,16 @@ class HomeBigEyeView extends StatelessWidget {
                 if (url?.isEmpty == true) {
                   return const SizedBox.shrink();
                 }
-                return Image.network(
+                return ExtendedImage.network(
                   url ?? '',
                   fit: BoxFit.cover,
                   width: width,
                   height: height,
+                  cacheWidth: width.toInt(),
+                  cacheHeight: height.toInt(),
+                  cacheMaxAge: const Duration(days: 7),
+                  enableLoadState: false,
+                  filterQuality: FilterQuality.none,
                 );
               },
             ),
@@ -74,11 +80,8 @@ class HomeBigEyeView extends StatelessWidget {
             child: ClipRect(
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                child: Opacity(
-                  opacity: 0,
-                  child: Container(
-                    color: Colors.black45,
-                  ),
+                child: Container(
+                  color: Colors.black45.withOpacity(0),
                 ),
               ),
             ),

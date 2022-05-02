@@ -17,6 +17,10 @@ class Imgs {
   final pic_Avatar_n = 'resource/image/pic_Avatar_n.png';
   final pic_Avatar_h = 'resource/image/pic_Avatar_h.png';
   final splas_logo = 'resource/image/splas_logo.png';
+
+  final cover_img = 'resource/image/cover_img.png';
+
+  final haokan_logo = 'resource/image/haokan_logo.png';
 }
 
 /// 字符串
@@ -51,11 +55,8 @@ class JsonPath {
   final play3Detail = 'resource/json/play3_info_detail.json';
   final play4Detail = 'resource/json/play4_info_detail.json';
 
-  final sendCode = 'resource/json/login_send_code.json';
-  final userInfo = 'resource/json/user_info.json';
-
-  // final hotVideo = 'Hot';
-  // final hotComment = '热评';
+  final loginSendCode = 'resource/json/login_send_code.json';
+  final loginUserInfo = 'resource/json/user_info.json';
 }
 
 class ResourceRef {
