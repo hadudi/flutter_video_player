@@ -1,28 +1,55 @@
-import 'package:flutter_video_player/http/http_response_model.dart';
-
-import '../../abstracts/abstract_interface.dart';
 import 'haokan_home_model.dart';
 import '../../http/http_manager.dart';
 
-class HaoKanHomeViewModel implements Request {
+enum DramaType {
+  ///全部
+  all(0, '全部'),
+
+  ///古装剧
+  costume(1, '古装剧'),
+
+  ///家庭剧
+  family(2, '家庭剧'),
+
+  ///爱情剧
+  love(3, '爱情剧'),
+
+  ///悬疑剧
+  crux(4, '悬疑剧'),
+
+  ///武侠剧
+  kungfu(5, '武侠剧'),
+
+  ///喜剧
+  comedy(6, '喜剧'),
+
+  ///战争剧
+  war(7, '战争剧');
+
+  final int value;
+  final String name;
+
+  const DramaType(this.value, this.name);
+}
+
+class HaoKanHomeViewModel {
   late List<DramaItemModel> pageModelList = [];
 
   int pageNumber = 1;
 
-  @override
   Future requestData({
+    required DramaType type,
     int pageNum = 1,
-    Map<String, dynamic> queryParams = const {},
   }) async {
     ResponseCallBack data = await HttpManager.request(
       req: NetApi.haokanHome,
       queryParams: {
         'rn': 20,
         'pn': pageNum,
-        'type': '0',
+        'type': type.value,
       },
     );
-    pageNumber++;
+    pageNumber = pageNum + 1;
 
     if (pageNum == 1) {
       pageModelList.clear();
@@ -32,12 +59,8 @@ class HaoKanHomeViewModel implements Request {
       return [];
     }
 
-    HomeResponseModel resModel = HomeResponseModel.fromJson(data.model!.map['response']);
+    HomeResponseModel resModel =
+        HomeResponseModel.fromJson(data.model!.map['response']);
     pageModelList.addAll(resModel.pageData ?? []);
-  }
-
-  @override
-  Future handleData(ResponseModel model) {
-    throw UnimplementedError();
   }
 }

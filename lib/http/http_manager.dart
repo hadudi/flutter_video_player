@@ -1,14 +1,15 @@
-import 'dart:core';
 import 'dart:io';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'http_response_model.dart';
 
 enum Method {
-  get,
-  post,
-  delete,
-  put,
+  get('get'),
+  post('post'),
+  delete('delete'),
+  put('put');
+
+  final String name;
+  const Method(this.name);
 }
 
 enum NetApi {
@@ -18,22 +19,12 @@ enum NetApi {
 }
 
 enum BaseUrl {
-  bilibili,
-  haokan,
-  test,
-}
+  bilibili('https://api.vc.bilibili.com'),
+  haokan('https://haokan.baidu.com'),
+  test('');
 
-extension BASEURL on BaseUrl {
-  String get url {
-    switch (this) {
-      case BaseUrl.bilibili:
-        return 'https://api.vc.bilibili.com';
-      case BaseUrl.haokan:
-        return 'https://haokan.baidu.com';
-      default:
-        return '';
-    }
-  }
+  final String url;
+  const BaseUrl(this.url);
 }
 
 extension ApiOption on NetApi {
@@ -76,21 +67,6 @@ extension ApiOption on NetApi {
   }
 }
 
-extension MethodName on Method {
-  String get name {
-    switch (this) {
-      case Method.get:
-        return 'get';
-      case Method.post:
-        return 'post';
-      case Method.delete:
-        return 'delete';
-      case Method.put:
-        return 'put';
-    }
-  }
-}
-
 class ResponseCallBack {
   ResponseModel? model;
   DioError? error;
@@ -115,10 +91,8 @@ class HttpManager {
     // ));
   }
 
-  @protected
   static final HttpManager _instance = HttpManager._();
 
-  @protected
   static HttpManager get instance => _instance;
 
   late NetApi api;

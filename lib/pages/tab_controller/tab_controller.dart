@@ -118,7 +118,7 @@ class _RootTabViewControllerState extends State<RootTabViewController> {
             .toList(),
         activeColor: const Color(0xFFFB6060),
         inactiveColor: const Color(0xFFADB6C2),
-        backgroundColor: _hotIndex ? Colors.black : Colors.white,
+        backgroundColor: _hotIndex ? const Color(0xff2d2d2d) : Colors.white,
         border: const Border(
           top: BorderSide(
             color: Color(0xFFB2B8C2),

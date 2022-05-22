@@ -1,5 +1,5 @@
 import 'package:flutter_video_player/http/http_config.dart';
-import 'package:flutter_video_player/http/http_manager.dart';
+// import 'package:flutter_video_player/http/http_manager.dart';
 import 'package:flutter_video_player/http/http_response_model.dart';
 import 'package:flutter_video_player/pages/drama_detail/model/play_info_model.dart';
 import 'package:flutter_video_player/pages/drama_detail/model/video_info_model.dart';

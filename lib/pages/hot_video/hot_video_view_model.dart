@@ -29,7 +29,7 @@ class HotVideoViewModel implements Request {
         'type': 'recommend',
       },
     );
-    pageNumber++;
+    pageNumber = pageNum + 1;
 
     if (pageNum == 0) {
       pageModelList.clear();

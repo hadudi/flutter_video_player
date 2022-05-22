@@ -45,7 +45,7 @@ class _CategoryViewPageState extends State<CategoryViewPage> {
         }
       }
     });
-    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) async {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       await viewModel.fetchCategory();
       await viewModel.fetchCategoryContent();
       if (mounted) {

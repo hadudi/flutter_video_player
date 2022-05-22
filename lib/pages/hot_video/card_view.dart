@@ -13,8 +13,12 @@ class CardView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final w = (Util.appWidth - 30) / 2.0;
-    final h = w * 148 / 208;
+    Picture? picture = model.item?.pictures?.first;
+    int imgWidth = picture?.imgWidth ?? 1;
+    int imgHeight = picture?.imgHeight ?? 1;
+    final w = Util.appWidth / 2.0 - 15;
+    final h = w / imgWidth * imgHeight;
+
     return Container(
       clipBehavior: Clip.hardEdge,
       padding: EdgeInsets.zero,
@@ -27,15 +31,24 @@ class CardView extends StatelessWidget {
         children: [
           ExtendedImage.network(
             model.item?.pictures?.first.imgSrc ?? '',
-            fit: BoxFit.cover,
-            clearMemoryCacheWhenDispose: true,
+            fit: BoxFit.fitWidth,
+            cacheMaxAge: const Duration(hours: 1),
+            enableLoadState: false,
             width: w,
             height: h,
             cacheWidth: w.toInt(),
             cacheHeight: h.toInt(),
-            cacheMaxAge: const Duration(days: 1),
-            enableLoadState: false,
+            filterQuality: FilterQuality.medium,
           ),
+          // AspectRatio(
+          //   aspectRatio: imgWidth / imgHeight,
+          //   child: ExtendedImage.network(
+          //     model.item?.pictures?.first.imgSrc ?? '',
+          //     fit: BoxFit.fitWidth,
+          //     cacheMaxAge: const Duration(hours: 1),
+          //     enableLoadState: false,
+          //   ),
+          // ),
           Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 12,
@@ -51,13 +64,17 @@ class CardView extends StatelessWidget {
             ),
           ),
           SizedBox(
-            width: w,
+            width: MediaQuery.of(context).size.width / 2 - 20,
             child: Stack(
               children: [
                 Container(
                   width: 24,
                   height: 24,
-                  margin: const EdgeInsets.only(left: 12, right: 10),
+                  margin: const EdgeInsets.only(
+                    left: 12,
+                    right: 10,
+                    bottom: 5,
+                  ),
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(
                       Radius.circular(12),

@@ -58,7 +58,7 @@ class _DramaDetailPageViewState extends State<DramaDetailPageView> {
     super.initState();
     viewModel = DramaDetailViewModel();
     viewModel.requestData(dramaId: widget.model?.dramaId ?? '').then((value) {
-      WidgetsBinding.instance?.addPostFrameCallback((timeStamp) async {
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
         if (mounted) {
           setState(() {});
         }

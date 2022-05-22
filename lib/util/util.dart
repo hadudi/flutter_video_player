@@ -10,15 +10,13 @@ class Util {
 
   ///  屏幕像素倍数
   static final double _devicePixelRatio =
-      WidgetsBinding.instance?.window.devicePixelRatio ?? 1.0;
+      WidgetsBinding.instance.window.devicePixelRatio;
 
   /// 屏幕物理像素大小
   static Size get _size =>
-      (WidgetsBinding.instance?.window.physicalSize ?? Size.zero) /
-      _devicePixelRatio;
+      WidgetsBinding.instance.window.physicalSize / _devicePixelRatio;
 
-  static bool get isPhoneX =>
-      (WidgetsBinding.instance?.window.padding.top ?? 0) > 60;
+  static bool get isPhoneX => WidgetsBinding.instance.window.padding.top > 60;
 
   /// 图片宽高比
   static const imgRatio = 0.75;

@@ -1,105 +1,57 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_video_player/pages/home/model/home_model.dart';
-import '../../models/models.dart';
-import '../../routes/route_manager.dart';
+import 'package:flutter_video_player/pages/haokan_video/haokan_tab_page.dart';
 import '../../util/util.dart';
-import '../home/views/cell_list.dart';
 import 'haokan_home_view_model.dart';
-import 'haokan_home_model.dart';
 
-class HaoKanHomePage extends StatefulWidget {
+class HaoKanHomePage extends StatelessWidget {
   const HaoKanHomePage({Key? key}) : super(key: key);
 
   @override
-  _HaoKanHomePageState createState() => _HaoKanHomePageState();
-}
-
-class _HaoKanHomePageState extends State<HaoKanHomePage> {
-  late HaoKanHomeViewModel viewModel;
-
-  @override
-  void initState() {
-    super.initState();
-    viewModel = HaoKanHomeViewModel();
-    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
-      viewModel.requestData().then((value) {
-        if (mounted) {
-          setState(() {});
-        }
-      });
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: Util.navBarHeight,
-        backgroundColor: Colors.black,
-        leadingWidth: 200,
-        leading: Row(
-          children: [
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
-              child: Image.asset(
-                R.Img.haokan_logo,
-                fit: BoxFit.contain,
-              ),
-            ),
-            const Text(
-              '好看视频',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                letterSpacing: 1.5,
-              ),
-            )
-          ],
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.search,
-            ),
-          ),
-        ],
-      ),
-      body: GridView.builder(
-        padding: const EdgeInsets.all(12),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
-          mainAxisSpacing: 0,
-          crossAxisSpacing: 6,
-          childAspectRatio: 0.564,
-        ),
-        itemCount: viewModel.pageModelList.length,
-        itemBuilder: (ctx, index) {
-          DramaItemModel model = viewModel.pageModelList[index];
-          return GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(
-                context,
-                RouteManager.dramaDetail,
-                arguments: DramaCoverModel(
-                  dramaId: model.firstEpisodes,
-                  coverUrl: model.verticalImage,
+    return DefaultTabController(
+      length: DramaType.values.length,
+      child: Scaffold(
+        backgroundColor: const Color(0xff2d2d2d),
+        appBar: AppBar(
+          toolbarHeight: Util.navBarHeight,
+          backgroundColor: const Color(0xff2d2d2d),
+          leadingWidth: 200,
+          elevation: 0.1,
+          title: Row(
+            children: [
+              Expanded(
+                child: TabBar(
+                  isScrollable: true,
+                  indicatorColor: const Color(0xFFF93759),
+                  indicatorWeight: 6,
+                  indicatorPadding: kTabLabelPadding,
+                  enableFeedback: false,
+                  labelColor: const Color(0xffF93759),
+                  labelStyle: const TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  unselectedLabelColor: const Color(0xff8d8d8d),
+                  unselectedLabelStyle: const TextStyle(
+                    fontSize: 12,
+                  ),
+                  tabs: DramaType.values
+                      .map(
+                        (e) => Tab(text: e.name),
+                      )
+                      .toList(),
                 ),
-              );
-            },
-            child: ListCell(
-              model: SectionContentModel(
-                int.tryParse('${model.firstEpisodes}'),
-                model.videoName,
-                model.verticalImage,
-                '${model.seriesNum}集${model.isFinish == '1' ? '全' : ' 连载中'}',
               ),
-            ),
-          );
-        },
+            ],
+          ),
+        ),
+        body: TabBarView(
+          children: DramaType.values
+              .map(
+                (e) => HaoKanHomeTabPage(type: e),
+              )
+              .toList(),
+        ),
       ),
     );
   }

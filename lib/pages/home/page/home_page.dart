@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     viewModel = HomeViewModel();
-    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       viewModel.requestData().then((value) {
         if (mounted) {
           _bigEyeView = HomeBigEyeView(

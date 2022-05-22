@@ -20,7 +20,7 @@ class _MinePageViewState extends State<MinePageView> {
   void initState() {
     super.initState();
     viewModel = MineViewModel();
-    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       viewModel.requestData().then((value) {
         if (mounted) {
           setState(() {});
