@@ -9,6 +9,7 @@ import 'package:flutter_video_player/pages/web/web_page.dart';
 import '../models/models.dart';
 import '../pages/drama_detail/page/drama_detail_page.dart';
 import '../pages/drama_list/drama_list_page.dart';
+import '../pages/haokan_video/short_video/haokan_short_video_page.dart';
 import '../pages/login/login_page.dart';
 import '../pages/tab_controller/tab_controller.dart';
 
@@ -23,6 +24,7 @@ class RouteManager {
   static const setting = '/setting';
   static const cache = '/cache';
   static const category = '/category';
+  static const shortVideo = '/shortVideo';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     return MaterialPageRoute(builder: (context) {
@@ -56,6 +58,8 @@ class RouteManager {
           return const SettiingViewPage();
         case cache:
           return const CacheViewPage();
+        case shortVideo:
+          return const HaoKanShortVideoPage(active: true,);
         default:
           return const Scaffold();
       }

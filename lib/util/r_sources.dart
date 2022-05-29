@@ -31,9 +31,10 @@ class Strs {
   final firstLaunch = 'FirstLaunch';
 
   final home = '首页';
+  final haokanVideo = '好看';
   final hotVideo = 'Hot';
   final category = '分类';
-  final hotComment = '热评';
+  final hotComment = '漫画';
   final mine = '我的';
 }
 

@@ -1,20 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_video_player/pages/haokan_video/haokan_home_page.dart';
+import 'package:flutter_video_player/pages/haokan_video/short_video/haokan_short_video_page.dart';
 import 'package:flutter_video_player/pages/home/page/home_page.dart';
 import 'package:flutter_video_player/pages/hot_video/hot_video_page.dart';
-import 'package:flutter_video_player/pages/mine/mine_page.dart';
+// import 'package:flutter_video_player/pages/mine/mine_page.dart';
 
 import '../../util/util.dart';
 import '../category/page/category_page.dart';
+import '../haokan_video/haokan_home/haokan_home_page.dart';
 
 enum PageType {
   home,
+  haokanVideo,
   hotVideo,
   category,
   comment,
-  mine,
+  // mine,
 }
 
 class JJTabItem {
@@ -40,9 +42,14 @@ class RootTabViewController extends StatefulWidget {
   _RootTabViewControllerState createState() => _RootTabViewControllerState();
 }
 
-class _RootTabViewControllerState extends State<RootTabViewController> {
+class _RootTabViewControllerState extends State<RootTabViewController>
+    with SingleTickerProviderStateMixin {
   var _currentIndex = 0;
   var _hotIndex = false;
+  var _hotActive = false;
+
+  late final AnimationController _animationController;
+  late final Animation<double> _animation;
 
   /// 页面
   List<JJTabItem> get pages => [
@@ -50,6 +57,11 @@ class _RootTabViewControllerState extends State<RootTabViewController> {
           type: PageType.home,
           title: R.Str.home,
           icon: Icons.home,
+        ),
+        JJTabItem(
+          type: PageType.haokanVideo,
+          title: R.Str.haokanVideo,
+          icon: Icons.ondemand_video_rounded,
         ),
         JJTabItem(
           type: PageType.hotVideo,
@@ -66,13 +78,13 @@ class _RootTabViewControllerState extends State<RootTabViewController> {
         JJTabItem(
           type: PageType.comment,
           title: R.Str.hotComment,
-          icon: Icons.comment,
+          icon: Icons.photo,
         ),
-        JJTabItem(
-          type: PageType.mine,
-          title: R.Str.mine,
-          icon: Icons.person,
-        ),
+        // JJTabItem(
+        //   type: PageType.mine,
+        //   title: R.Str.mine,
+        //   icon: Icons.person,
+        // ),
       ];
 
   late CupertinoTabController _tabController;
@@ -81,10 +93,16 @@ class _RootTabViewControllerState extends State<RootTabViewController> {
   void initState() {
     super.initState();
     _tabController = CupertinoTabController();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 800),
+    );
+    _animation = Tween(begin: 1.2, end: 1.0).animate(_animationController);
   }
 
   @override
   void dispose() {
+    _animationController.dispose();
     _tabController.dispose();
     super.dispose();
   }
@@ -107,10 +125,13 @@ class _RootTabViewControllerState extends State<RootTabViewController> {
         items: pages
             .map(
               (e) => BottomNavigationBarItem(
-                icon: Icon(
-                  e.icon,
-                  size: e.iconSize,
-                  color: e.color,
+                icon: ScaleTransition(
+                  scale: _animation,
+                  child: Icon(
+                    e.icon,
+                    size: e.iconSize,
+                    color: e.color,
+                  ),
                 ),
                 label: e.title,
               ),
@@ -128,7 +149,7 @@ class _RootTabViewControllerState extends State<RootTabViewController> {
         ),
         onTap: (index) => setState(() {
           _currentIndex = index;
-          _hotIndex = index == 1;
+          _hotIndex = index == 2;
           switch (_currentIndex) {
             case 0:
             case 1:
@@ -149,7 +170,7 @@ class _RootTabViewControllerState extends State<RootTabViewController> {
       case PageType.home:
         page = const HomePage();
         break;
-      case PageType.hotVideo:
+      case PageType.haokanVideo:
         page = const HaoKanHomePage();
         break;
       case PageType.category:
@@ -158,8 +179,12 @@ class _RootTabViewControllerState extends State<RootTabViewController> {
       case PageType.comment:
         page = const HotVideoPage();
         break;
-      case PageType.mine:
-        page = const MinePageView();
+      case PageType.hotVideo:
+        page = HaoKanShortVideoPage(
+          active: _hotIndex,
+        );
+        // case PageType.mine:
+        //   page = const MinePageView();
         break;
     }
     return page;

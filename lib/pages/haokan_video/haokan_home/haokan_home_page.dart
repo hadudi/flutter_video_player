@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_video_player/pages/haokan_video/haokan_tab_page.dart';
-import '../../util/util.dart';
+import '../../../util/util.dart';
 import 'haokan_home_view_model.dart';
+import 'haokan_tab_page.dart';
 
 class HaoKanHomePage extends StatelessWidget {
   const HaoKanHomePage({Key? key}) : super(key: key);
@@ -11,7 +11,7 @@ class HaoKanHomePage extends StatelessWidget {
     return DefaultTabController(
       length: DramaType.values.length,
       child: Scaffold(
-        backgroundColor: const Color(0xff2d2d2d),
+        // backgroundColor: const Color(0xff2d2d2d),
         appBar: AppBar(
           toolbarHeight: Util.navBarHeight,
           backgroundColor: const Color(0xff2d2d2d),
@@ -26,6 +26,14 @@ class HaoKanHomePage extends StatelessWidget {
                   indicatorWeight: 6,
                   indicatorPadding: kTabLabelPadding,
                   enableFeedback: false,
+                  splashFactory: NoSplash.splashFactory,
+                  overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                    (Set<MaterialState> states) {
+                      return states.contains(MaterialState.focused)
+                          ? null
+                          : Colors.transparent;
+                    },
+                  ),
                   labelColor: const Color(0xffF93759),
                   labelStyle: const TextStyle(
                     fontSize: 15,

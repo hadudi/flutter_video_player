@@ -57,10 +57,13 @@ class _VideoPlayerLayerState extends State<VideoPlayerLayer> {
     }
     try {
       if (oldController != null) {
+        oldController?.pause();
         oldController?.dispose();
+        oldController = null;
       }
     } catch (e) {
       //(e);
+      print(e);
     }
 
     String playUrl = info?.url ?? '';
@@ -73,10 +76,16 @@ class _VideoPlayerLayerState extends State<VideoPlayerLayer> {
 
   @override
   void dispose() {
+    try {
+      if (oldController?.value.isPlaying == true) {
+        oldController?.pause();
+      }
+      // oldController?.dispose();
+    } catch (e) {}
+
     if (newController.value.isPlaying) {
       newController.pause();
     }
-    oldController?.dispose();
     newController.dispose();
     super.dispose();
   }

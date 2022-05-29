@@ -13,18 +13,35 @@ import 'routes/route_manager.dart';
 export 'package:flutter_video_player/util/r_sources.dart';
 
 void main() {
-  runZonedGuarded(() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top]);
-    //滚动性能优化
-    // GestureBinding.instance?.resamplingEnabled = true;
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-    ]);
-    await HiveManager.initHive();
-    runApp(const MyApp());
-  }, (error, stack) {});
+  runZonedGuarded(
+    () async {
+      WidgetsFlutterBinding.ensureInitialized();
+      SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+          overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top]);
+      //滚动性能优化
+      // GestureBinding.instance?.resamplingEnabled = true;
+      SystemChrome.setPreferredOrientations([
+        DeviceOrientation.portraitUp,
+      ]);
+      await HiveManager.initHive();
+      runApp(const MyApp());
+    },
+    (error, StackTrace stack) {
+      // ignore: avoid_print
+      print(error);print(stack);
+    },
+    zoneSpecification: ZoneSpecification(
+      // 拦截print
+      print: (Zone self, ZoneDelegate parent, Zone zone, String line) {
+        parent.print(zone, "Interceptor: $line");
+      },
+      // 拦截未处理的异步错误
+      handleUncaughtError: (Zone self, ZoneDelegate parent, Zone zone,
+          Object error, StackTrace stackTrace) {
+        parent.print(zone, '${error.toString()} $stackTrace');
+      },
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

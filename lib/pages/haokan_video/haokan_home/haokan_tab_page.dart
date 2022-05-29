@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-
-import '../../models/models.dart';
-import '../../routes/route_manager.dart';
-import '../home/model/home_model.dart';
-import '../home/views/cell_list.dart';
+import '../../../routes/route_manager.dart';
+import '../../home/model/home_model.dart';
+import '../../home/views/cell_list.dart';
 import 'haokan_home_model.dart';
 import 'haokan_home_view_model.dart';
 
@@ -74,11 +72,12 @@ class _HaoKanHomeTabPageState extends State<HaoKanHomeTabPage>
             onTap: () {
               Navigator.pushNamed(
                 context,
-                RouteManager.dramaDetail,
-                arguments: DramaCoverModel(
-                  dramaId: model.firstEpisodes,
-                  coverUrl: model.verticalImage,
-                ),
+                RouteManager.shortVideo,
+                // RouteManager.dramaDetail,
+                // arguments: DramaCoverModel(
+                //   dramaId: model.firstEpisodes,
+                //   coverUrl: model.verticalImage,
+                // ),
               );
             },
             child: ListCell(

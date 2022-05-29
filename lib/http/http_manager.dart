@@ -15,6 +15,7 @@ enum Method {
 enum NetApi {
   haokanHome,
   haokanDramaDetail,
+  haokanShortVideoList,
   bilibiliHotVideo,
 }
 
@@ -33,6 +34,7 @@ extension ApiOption on NetApi {
     switch (this) {
       case NetApi.haokanHome:
       case NetApi.haokanDramaDetail:
+      case NetApi.haokanShortVideoList:
         return BaseUrl.haokan.url;
       case NetApi.bilibiliHotVideo:
         return BaseUrl.bilibili.url;
@@ -50,6 +52,9 @@ extension ApiOption on NetApi {
         break;
       case NetApi.haokanDramaDetail:
         path = '/v';
+        break;
+      case NetApi.haokanShortVideoList:
+        path = '/web/video/feed';
         break;
       case NetApi.bilibiliHotVideo:
         path = '/link_draw/v2/Doc/index';
@@ -100,8 +105,10 @@ class HttpManager {
 
   late int timeOffset = 0;
 
-  Map<String, dynamic> handleHeader(
-      {required NetApi req, Map<String, dynamic> queryParams = const {}}) {
+  Map<String, dynamic> handleHeader({
+    required NetApi req,
+    Map<String, dynamic> queryParams = const {},
+  }) {
     api = req;
     dio.options.baseUrl = api.url;
     var map = {

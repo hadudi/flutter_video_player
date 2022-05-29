@@ -212,20 +212,12 @@ class _HomePageState extends State<HomePage> {
             padding: EdgeInsets.zero,
             minSize: 42,
             child: const Icon(
-              Icons.search,
+              Icons.person,
               size: 28,
               color: Colors.white,
             ),
             onPressed: () async {
-              if (UserManger.instance.isLogin) {
-                Navigator.pushNamed(context, RouteManager.dramaList,
-                    arguments: DramaCoverModel(
-                      coverUrl: '片单',
-                      dramaId: 'jgjg.jqq://ablumDetail?seriesId=33702',
-                    ));
-              } else {
-                Navigator.pushNamed(context, RouteManager.login);
-              }
+              Navigator.pushNamed(context, RouteManager.mine);
             },
           ),
         ],
