@@ -16,21 +16,13 @@ class HotVideoPage extends StatefulWidget {
 class _HotVideoPageState extends State<HotVideoPage> {
   late HotVideoViewModel viewModel;
 
-  final RefreshController _controller =
-      RefreshController(initialRefresh: false);
+  late final RefreshController _controller;
 
   @override
   void initState() {
     super.initState();
     viewModel = HotVideoViewModel();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      viewModel.requestData().then((value) {
-        _controller.refreshCompleted();
-        if (mounted) {
-          setState(() {});
-        }
-      });
-    });
+    _controller = RefreshController(initialRefresh: true);
   }
 
   @override

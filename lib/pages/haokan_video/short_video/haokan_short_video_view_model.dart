@@ -16,7 +16,7 @@ class HaoKanShortVideoViewModel {
         'tab': 'recommend',
         'act': 'pcFeed',
         'pd': 'pc',
-        'num': 5,
+        'num': 10,
       },
     );
     pageNumber = pageNum + 1;

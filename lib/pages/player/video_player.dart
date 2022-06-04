@@ -63,7 +63,7 @@ class _VideoPlayerLayerState extends State<VideoPlayerLayer> {
       }
     } catch (e) {
       //(e);
-      print(e);
+      // print(e);
     }
 
     String playUrl = info?.url ?? '';
@@ -80,7 +80,7 @@ class _VideoPlayerLayerState extends State<VideoPlayerLayer> {
       if (oldController?.value.isPlaying == true) {
         oldController?.pause();
       }
-      // oldController?.dispose();
+    // ignore: empty_catches
     } catch (e) {}
 
     if (newController.value.isPlaying) {

@@ -21,6 +21,8 @@ class Imgs {
   final cover_img = 'resource/image/cover_img.png';
 
   final haokan_logo = 'resource/image/haokan_logo.png';
+
+  final splash_shake = 'resource/image/splash_shake.png';
 }
 
 /// 字符串

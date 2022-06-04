@@ -251,19 +251,13 @@ class PlayerControllerOverlayState extends State<PlayerControllerOverlay>
           });
           keepControlOverlayInShow();
         },
-        icon: _isPlaying
-            ? AnimatedIcon(
-                icon: AnimatedIcons.play_pause,
-                progress: animationCtrl,
-                size: 24,
-                color: Colors.white,
-              )
-            : AnimatedIcon(
-                icon: AnimatedIcons.pause_play,
-                progress: animationCtrl,
-                size: 24,
-                color: Colors.white,
-              ),
+        icon: AnimatedIcon(
+          icon:
+              _isPlaying ? AnimatedIcons.play_pause : AnimatedIcons.pause_play,
+          progress: animationCtrl,
+          size: 24,
+          color: Colors.white,
+        ),
       );
 
   Text get positionText => Text(

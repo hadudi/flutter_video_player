@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
+import '../../../models/models.dart';
 import '../../../routes/route_manager.dart';
 import '../../home/model/home_model.dart';
 import '../../home/views/cell_list.dart';
@@ -22,10 +23,13 @@ class _HaoKanHomeTabPageState extends State<HaoKanHomeTabPage>
     with AutomaticKeepAliveClientMixin {
   late HaoKanHomeViewModel viewModel;
 
+  late final RefreshController _controller;
+
   @override
   void initState() {
     super.initState();
     viewModel = HaoKanHomeViewModel();
+    _controller = RefreshController(initialRefresh: false);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       viewModel.requestData(type: widget.type).then((value) {
         if (mounted) {
@@ -36,23 +40,31 @@ class _HaoKanHomeTabPageState extends State<HaoKanHomeTabPage>
   }
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     super.build(context);
-    return EasyRefresh(
-      header: BallPulseHeader(),
-      footer: BallPulseFooter(),
+    return SmartRefresher(
+      enablePullUp: true,
+      controller: _controller,
       onRefresh: () async {
         viewModel.requestData(type: widget.type, pageNum: 1).then((value) {
           if (mounted) {
+            _controller.refreshCompleted();
             setState(() {});
           }
         });
       },
-      onLoad: () async {
+      onLoading: () async {
         viewModel
             .requestData(type: widget.type, pageNum: viewModel.pageNumber)
             .then((value) {
           if (mounted) {
+            _controller.loadComplete();
             setState(() {});
           }
         });
@@ -72,12 +84,11 @@ class _HaoKanHomeTabPageState extends State<HaoKanHomeTabPage>
             onTap: () {
               Navigator.pushNamed(
                 context,
-                RouteManager.shortVideo,
-                // RouteManager.dramaDetail,
-                // arguments: DramaCoverModel(
-                //   dramaId: model.firstEpisodes,
-                //   coverUrl: model.verticalImage,
-                // ),
+                RouteManager.dramaDetail,
+                arguments: DramaCoverModel(
+                  dramaId: model.firstEpisodes,
+                  coverUrl: model.verticalImage,
+                ),
               );
             },
             child: ListCell(

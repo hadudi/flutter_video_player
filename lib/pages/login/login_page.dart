@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_video_player/pages/login/login_input_text_view.dart';
 import 'package:flutter_video_player/pages/login/login_view_model.dart';
 import 'package:flutter_video_player/routes/route_manager.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter_video_player/util/toast.dart';
 
 import '../../util/util.dart';
 
@@ -50,10 +50,7 @@ class _LoginPageViewState extends State<LoginPageView> {
 /* 发送验证码 */
   void sendCode(String mobile) {
     if (!Util.isMobile(mobile)) {
-      Fluttertoast.showToast(
-        msg: '请输入正确的手机号',
-        gravity: ToastGravity.CENTER,
-      );
+      Toast.show(context, '请输入正确的手机号');
       return;
     }
     if (_timer?.isActive == true || _phoneCtrl.text.length != 11) {
@@ -70,15 +67,9 @@ class _LoginPageViewState extends State<LoginPageView> {
     });
     viewModel.sendVerifyCode(mobile).then((value) {
       if (value) {
-        Fluttertoast.showToast(
-          msg: '验证码发送成功',
-          gravity: ToastGravity.CENTER,
-        );
+        Toast.show(context, '验证码发送成功');
       } else {
-        Fluttertoast.showToast(
-          msg: '验证码发送失败，请稍后再试!',
-          gravity: ToastGravity.CENTER,
-        );
+        Toast.show(context, '验证码发送失败，请稍后再试!');
       }
     });
   }
@@ -86,10 +77,7 @@ class _LoginPageViewState extends State<LoginPageView> {
   /// 验证码登录
   void loginWithCode(String mobile, String code) async {
     if (!readBox) {
-      await Fluttertoast.showToast(
-        msg: '请先阅读并同意用户协议和隐私政策',
-        gravity: ToastGravity.CENTER,
-      );
+      Toast.show(context, '请先阅读并同意用户协议和隐私政策');
       return;
     }
 
@@ -99,32 +87,18 @@ class _LoginPageViewState extends State<LoginPageView> {
     }
     isLogining = true;
     if (Util.isMobile(mobile) && Util.isVerifyCode(code)) {
-      await Fluttertoast.showToast(
-        msg: '正在登录中。。。',
-        gravity: ToastGravity.CENTER,
-      );
+      Toast.show(context, '正在登录中...');
       bool success = await viewModel.verifyCodeLogin(mobile, code);
       isLogining = false;
-      await Fluttertoast.cancel();
       if (success) {
-        await Fluttertoast.showToast(
-          msg: '登录成功',
-          gravity: ToastGravity.CENTER,
-        );
-        await Fluttertoast.cancel();
+        Toast.show(context, '登录成功');
         Navigator.pop(context);
       } else {
-        await Fluttertoast.showToast(
-          msg: '登录失败',
-          gravity: ToastGravity.CENTER,
-        );
+        Toast.show(context, '登录失败');
       }
     } else {
       isLogining = false;
-      await Fluttertoast.showToast(
-        msg: '请输入正确的手机号和验证码',
-        gravity: ToastGravity.CENTER,
-      );
+      Toast.show(context, '请输入正确的手机号和验证码');
     }
   }
 

@@ -40,15 +40,6 @@ class CardView extends StatelessWidget {
             cacheHeight: h.toInt(),
             filterQuality: FilterQuality.medium,
           ),
-          // AspectRatio(
-          //   aspectRatio: imgWidth / imgHeight,
-          //   child: ExtendedImage.network(
-          //     model.item?.pictures?.first.imgSrc ?? '',
-          //     fit: BoxFit.fitWidth,
-          //     cacheMaxAge: const Duration(hours: 1),
-          //     enableLoadState: false,
-          //   ),
-          // ),
           Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 12,

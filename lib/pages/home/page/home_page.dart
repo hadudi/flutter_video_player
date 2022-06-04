@@ -1,13 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_video_player/custom/navigationbar.dart';
-import 'package:flutter_video_player/pages/home/view_model/home_view_model.dart';
 import 'package:flutter_video_player/util/util.dart';
-
-import '../../../models/models.dart';
 import '../../../routes/route_manager.dart';
-import '../../../user/user_manager.dart';
 import '../model/home_model.dart';
+import '../view_model/home_view_model.dart';
 import '../views/big_eye_view.dart';
 import '../views/cell_big_eye.dart';
 import '../views/cell_guide.dart';

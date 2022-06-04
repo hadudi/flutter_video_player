@@ -5,6 +5,8 @@ import 'package:flutter_video_player/routes/route_manager.dart';
 import 'package:flutter_video_player/user/user_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../util/r_sources.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
   @override
@@ -59,9 +61,9 @@ class _SplashScreenState extends State<SplashScreen>
           if (snap.data == false) {
             return ScaleTransition(
               scale: _animation,
-              child: Image.network(
-                "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1059109819,2238091618&fm=26&gp=0.jpg",
-                scale: 2.0,
+              child: Image.asset(
+                R.Img.splash_shake,
+                scale: 1.5,
                 fit: BoxFit.cover,
               ),
             );

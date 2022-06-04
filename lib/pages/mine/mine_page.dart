@@ -57,10 +57,24 @@ class _MinePageViewState extends State<MinePageView> {
                     height: Util.appHeight - Util.tabBarHeight,
                     child: Stack(
                       children: <Widget>[
+                        Positioned(
+                          top: Util.statusBarHeight,
+                          child: IconButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            icon: const Icon(
+                              Icons.arrow_back_ios,
+                              size: 18,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
                         Positioned.fill(
                           child: Container(
                             margin: EdgeInsets.only(
-                                top: Util.navgationBarHeight + 74),
+                              top: Util.navgationBarHeight + 74,
+                            ),
                             decoration: const BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.only(

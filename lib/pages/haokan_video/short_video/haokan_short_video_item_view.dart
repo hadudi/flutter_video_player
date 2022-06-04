@@ -1,3 +1,4 @@
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 import 'haokan_short_video_model.dart';
@@ -17,12 +18,26 @@ class HaoKanShortVideoItemView extends StatefulWidget {
       _HaoKanShortVideoItemViewState();
 }
 
-class _HaoKanShortVideoItemViewState extends State<HaoKanShortVideoItemView> {
-  late VideoPlayerController _controller;
+class _HaoKanShortVideoItemViewState extends State<HaoKanShortVideoItemView>
+    with TickerProviderStateMixin {
+  late final VideoPlayerController _controller;
+  late final AnimationController _animationController;
+  late final Animation<double> _animation;
+
+  late final ValueNotifier<bool> _playNotify;
 
   @override
   void initState() {
     super.initState();
+    _playNotify = ValueNotifier<bool>(true);
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 2),
+    )..repeat();
+    _animation = CurvedAnimation(
+      parent: _animationController,
+      curve: Curves.linear,
+    );
   }
 
   @override
@@ -36,7 +51,6 @@ class _HaoKanShortVideoItemViewState extends State<HaoKanShortVideoItemView> {
 
   @override
   void didUpdateWidget(covariant HaoKanShortVideoItemView oldWidget) {
-    super.didUpdateWidget(oldWidget);
     try {
       bool ret = oldWidget.model.id == widget.model.id;
       if (!ret) {
@@ -49,18 +63,25 @@ class _HaoKanShortVideoItemViewState extends State<HaoKanShortVideoItemView> {
       }
       // ignore: empty_catches
     } catch (e) {}
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
   void dispose() {
     _controller.dispose();
+    _animationController.dispose();
+    _playNotify.dispose();
     super.dispose();
   }
 
   Future<void> start() async {
     if (widget.active) {
       if (_controller.value.isInitialized) {
+        if (!_playNotify.value) {
+          return;
+        }
         await _controller.play();
+        _playNotify.value = true;
       } else {
         await _controller.initialize();
         setState(() {});
@@ -68,6 +89,7 @@ class _HaoKanShortVideoItemViewState extends State<HaoKanShortVideoItemView> {
     } else {
       if (_controller.value.isPlaying) {
         await _controller.pause();
+        _playNotify.value = false;
       }
     }
   }
@@ -87,8 +109,10 @@ class _HaoKanShortVideoItemViewState extends State<HaoKanShortVideoItemView> {
                     onTap: () {
                       if (_controller.value.isPlaying) {
                         _controller.pause();
+                        _playNotify.value = false;
                       } else {
                         _controller.play();
+                        _playNotify.value = true;
                       }
                     },
                     child: AnimatedContainer(
@@ -108,14 +132,36 @@ class _HaoKanShortVideoItemViewState extends State<HaoKanShortVideoItemView> {
                   child: Center(
                     child: AspectRatio(
                       aspectRatio: widget.model.aspectRatio,
-                      child: Image.network(
+                      child: ExtendedImage.network(
                         widget.model.posterSmall!,
+                        cacheMaxAge: const Duration(hours: 1),
                       ),
                     ),
                   ),
                 );
               },
             ),
+          ),
+          ValueListenableBuilder<bool>(
+            valueListenable: _playNotify,
+            builder: (context, value, child) {
+              if (value) {
+                return const SizedBox();
+              }
+              return Center(
+                child: AnimatedScale(
+                  scale: 1.5,
+                  duration: const Duration(
+                    milliseconds: 500,
+                  ),
+                  child: Icon(
+                    Icons.play_arrow_rounded,
+                    size: 60,
+                    color: Colors.white.withOpacity(0.6),
+                  ),
+                ),
+              );
+            },
           ),
           Positioned(
             left: 16,
@@ -152,11 +198,19 @@ class _HaoKanShortVideoItemViewState extends State<HaoKanShortVideoItemView> {
             bottom: 60,
             child: Column(
               children: [
-                CircleAvatar(
-                  backgroundImage: NetworkImage(widget.model.authorAvatar!),
+                RotationTransition(
+                  turns: _animation,
+                  child: CircleAvatar(
+                    backgroundColor: Colors.white,
+                    backgroundImage: NetworkImage(
+                      widget.model.authorAvatar!,
+                    ),
+                  ),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    _animationController.stop();
+                  },
                   icon: const Icon(Icons.favorite),
                   color: Colors.red[400],
                   padding: const EdgeInsets.symmetric(vertical: 0),

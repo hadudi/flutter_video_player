@@ -30,7 +30,6 @@ dependencies:
   flutter:
     sdk: flutter
   #刷新控件
-  flutter_easyrefresh: ^2.2.1
   pull_to_refresh: ^2.0.0
   #请求库
   dio: ^4.0.3
@@ -40,8 +39,6 @@ dependencies:
   video_player: ^2.2.19
   #滑动选项
   flutter_slidable: ^1.1.0
-  #吐司
-  fluttertoast: ^8.0.8
   #网页
   # webview_flutter: ^3.0.0
   # 机型等信息
@@ -100,6 +97,7 @@ flutter:
      - resource/image/splash_logo.png
      - resource/image/cover_img.png
      - resource/image/haokan_logo.png
+     - resource/image/splash_shake.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
