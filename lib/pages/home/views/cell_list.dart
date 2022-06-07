@@ -31,15 +31,18 @@ class ListCell extends StatelessWidget {
                     Radius.circular(4),
                   ),
                 ),
-                child: ExtendedImage.network(
-                  model?.coverUrl ?? '',
-                  fit: BoxFit.cover,
-                  width: width,
-                  height: height,
-                  cacheWidth: width.toInt(),
-                  cacheHeight: height.toInt(),
-                  cacheMaxAge: const Duration(days: 7),
-                  enableLoadState: false,
+                child: Hero(
+                  tag: model!.coverUrl!,
+                  child: ExtendedImage.network(
+                    model?.coverUrl ?? '',
+                    fit: BoxFit.cover,
+                    width: width,
+                    height: height,
+                    cacheWidth: width.toInt(),
+                    cacheHeight: height.toInt(),
+                    cacheMaxAge: const Duration(days: 7),
+                    enableLoadState: false,
+                  ),
                 ),
               ),
               Positioned(

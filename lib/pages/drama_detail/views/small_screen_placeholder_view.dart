@@ -20,11 +20,16 @@ class SmallScreenPlayerPlaceHolderView extends StatelessWidget {
       child: Stack(
         children: <Widget>[
           Positioned(
-            child: Image.network(
-              coverUrl,
-              width: width,
-              height: height,
-              fit: BoxFit.cover,
+            child: Hero(
+              tag: coverUrl,
+              child: Image.network(
+                coverUrl,
+                width: width,
+                height: height,
+                cacheWidth: width.toInt(),
+                cacheHeight: height.toInt(),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           Positioned(
