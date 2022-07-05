@@ -127,9 +127,8 @@ class _DramaDetailPageViewState extends State<DramaDetailPageView> {
                     },
                     child: Offstage(
                       offstage: fullScreenNotify.value,
-                      child: const SmallScreenPlayerPlaceHolderView(
-                        coverUrl:
-                            'https://pic.rmb.bdstatic.com/baidu-rmb-video-cover-1/2021-7/1626194565491/6f3d7a62247e.jpg@s_0,w_800,h_1000,q_80',
+                      child: SmallScreenPlayerPlaceHolderView(
+                        coverUrl: widget.model?.coverUrl ?? '',
                       ),
                     ),
                   ),

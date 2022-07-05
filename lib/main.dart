@@ -4,6 +4,7 @@
 
 import 'dart:async';
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_video_player/database/hv_manager.dart';
@@ -19,7 +20,7 @@ void main() {
       SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
           overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top]);
       //滚动性能优化
-      // GestureBinding.instance?.resamplingEnabled = true;
+      // GestureBinding.instance.resamplingEnabled = true;
       SystemChrome.setPreferredOrientations([
         DeviceOrientation.portraitUp,
       ]);
