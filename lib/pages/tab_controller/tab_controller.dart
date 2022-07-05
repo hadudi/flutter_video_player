@@ -116,6 +116,23 @@ class _RootTabViewControllerState extends State<RootTabViewController>
         tabBar: _tabBar,
         tabBuilder: (context, index) => _tabBuilder(context, index),
       ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   currentIndex: _currentIndex,
+      //   items: pages
+      //       .map(
+      //         (e) => BottomNavigationBarItem(
+      //           icon: ScaleTransition(
+      //             scale: _animation,
+      //             child: Icon(
+      //               e.icon,
+      //               size: e.iconSize,
+      //               color: e.color,
+      //             ),
+      //           ),
+      //           label: e.title,
+      //         ),
+      //       )
+      //       .toList(),),
     );
   }
 

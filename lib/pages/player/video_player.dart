@@ -68,7 +68,7 @@ class _VideoPlayerLayerState extends State<VideoPlayerLayer> {
 
     String playUrl = info?.url ?? '';
     if (playUrl.isNotEmpty) {
-      newController = VideoPlayerController.network(playUrl)..initialize();
+      newController = VideoPlayerController.network(playUrl);
       _oldPlayInfoId = info?.episodeSid;
       oldController = newController;
     }
@@ -80,7 +80,7 @@ class _VideoPlayerLayerState extends State<VideoPlayerLayer> {
       if (oldController?.value.isPlaying == true) {
         oldController?.pause();
       }
-    // ignore: empty_catches
+      // ignore: empty_catches
     } catch (e) {}
 
     if (newController.value.isPlaying) {
@@ -131,10 +131,10 @@ class _VideoPlayerLayerState extends State<VideoPlayerLayer> {
   Widget build(BuildContext context) {
     DramaPlayInfoWidget.of(context)?.viewModel;
     return FutureBuilder(
-      initialData: false,
       future: started(),
       builder: (BuildContext ctx, AsyncSnapshot snapshot) {
-        if (snapshot.hasData) {
+        if (snapshot.connectionState == ConnectionState.done &&
+            newController.value.isInitialized) {
           return Container(
             color: Colors.black,
             child: Stack(
@@ -145,20 +145,20 @@ class _VideoPlayerLayerState extends State<VideoPlayerLayer> {
             ),
           );
         }
-        return const SizedBox.shrink();
+        return Container(
+          color: const Color(0xff000000),
+        );
       },
     );
   }
 
   Future<bool> started() async {
     try {
-      if (!newController.value.isInitialized &&
-          !newController.value.isPlaying) {
-        await newController.play();
-        return true;
-      } else {
-        return newController.value.isPlaying;
+      if (!newController.value.isInitialized) {
+        await newController.initialize();
       }
+      await newController.play();
+      return true;
     } catch (e) {
       return false;
     }
