@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_video_player/pages/haokan_video/short_video/haokan_short_video_page.dart';
 import 'package:flutter_video_player/pages/hot_video/hot_video_page.dart';
 import 'package:flutter_video_player/pages/tab_controller/tabbar.dart';
+import 'package:flutter_video_player/providers/config_provider.dart';
+import 'package:provider/provider.dart';
 import '../../util/util.dart';
 import '../category/page/category_page.dart';
 import '../haokan_video/haokan_home/haokan_home_page.dart';
@@ -64,9 +66,7 @@ class _RootTabViewControllerState extends State<RootTabViewController>
             page = const HotVideoPage();
             break;
           case PageType.hotVideo:
-            page = HaoKanShortVideoPage(
-              active: false,
-            );
+            page = const HaoKanShortVideoPage();
             break;
         }
         return page;
@@ -87,6 +87,7 @@ class _RootTabViewControllerState extends State<RootTabViewController>
       bottomNavigationBar: CustomTabbar(
         tabItems: _tabItems,
         callback: (index) {
+          context.read<ConfigProvider>().changeIndex(index);
           _tabController.jumpToPage(index);
         },
       ),

@@ -1,5 +1,7 @@
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_video_player/providers/config_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
 import 'haokan_short_video_model.dart';
 
@@ -7,11 +9,9 @@ class HaoKanShortVideoItemView extends StatefulWidget {
   const HaoKanShortVideoItemView({
     super.key,
     required this.model,
-    required this.active,
   });
 
   final ShortVideoItem model;
-  final bool active;
 
   @override
   State<HaoKanShortVideoItemView> createState() =>
@@ -25,6 +25,8 @@ class _HaoKanShortVideoItemViewState extends State<HaoKanShortVideoItemView>
   late final Animation<double> _animation;
 
   late final ValueNotifier<bool> _playNotify;
+
+  late final bool active;
 
   @override
   void initState() {
@@ -75,7 +77,7 @@ class _HaoKanShortVideoItemViewState extends State<HaoKanShortVideoItemView>
   }
 
   Future<void> start() async {
-    if (widget.active) {
+    if (context.watch<ConfigProvider>().tabIndex == 1) {
       if (_controller.value.isInitialized) {
         if (!_playNotify.value) {
           return;

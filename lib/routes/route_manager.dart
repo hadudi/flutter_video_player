@@ -59,7 +59,7 @@ class RouteManager {
         case cache:
           return const CacheViewPage();
         case shortVideo:
-          return const HaoKanShortVideoPage(active: true,);
+          return const HaoKanShortVideoPage();
         default:
           return const Scaffold();
       }

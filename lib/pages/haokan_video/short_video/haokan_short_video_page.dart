@@ -5,16 +5,14 @@ import 'haokan_short_video_view_model.dart';
 class HaoKanShortVideoPage extends StatefulWidget {
   const HaoKanShortVideoPage({
     super.key,
-    required this.active,
   });
-
-  final bool active;
 
   @override
   State<HaoKanShortVideoPage> createState() => _HaoKanShortVideoPageState();
 }
 
-class _HaoKanShortVideoPageState extends State<HaoKanShortVideoPage> {
+class _HaoKanShortVideoPageState extends State<HaoKanShortVideoPage>
+    with AutomaticKeepAliveClientMixin {
   late final HaoKanShortVideoViewModel viewModel;
   late final PageController _pageController;
 
@@ -50,6 +48,7 @@ class _HaoKanShortVideoPageState extends State<HaoKanShortVideoPage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       backgroundColor: Colors.black,
       body: RefreshIndicator(
@@ -68,11 +67,13 @@ class _HaoKanShortVideoPageState extends State<HaoKanShortVideoPage> {
           itemBuilder: (context, index) {
             return HaoKanShortVideoItemView(
               model: viewModel.videoList[index],
-              active: widget.active,
             );
           },
         ),
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
