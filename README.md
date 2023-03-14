@@ -1,4 +1,4 @@
-# flutter_video_player
+# flutter_video_player 后面在provider_dev分支上更新
 
 # provider_dev分支 重构版
 
