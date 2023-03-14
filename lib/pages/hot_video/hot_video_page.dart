@@ -13,7 +13,8 @@ class HotVideoPage extends StatefulWidget {
   State<HotVideoPage> createState() => _HotVideoPageState();
 }
 
-class _HotVideoPageState extends State<HotVideoPage> {
+class _HotVideoPageState extends State<HotVideoPage>
+    with AutomaticKeepAliveClientMixin {
   late HotVideoViewModel viewModel;
 
   late final RefreshController _controller;
@@ -33,6 +34,7 @@ class _HotVideoPageState extends State<HotVideoPage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: Util.navBarHeight,
@@ -92,4 +94,7 @@ class _HotVideoPageState extends State<HotVideoPage> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

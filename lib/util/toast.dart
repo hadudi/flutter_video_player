@@ -47,7 +47,7 @@ class Toast {
       );
     } else {}
     if (_overlayEntry?.mounted == false) {
-      state?.insert(_overlayEntry!);
+      state.insert(_overlayEntry!);
     } else {
       _overlayEntry?.markNeedsBuild();
     }

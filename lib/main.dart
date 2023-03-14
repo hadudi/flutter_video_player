@@ -4,10 +4,11 @@
 
 import 'dart:async';
 
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_video_player/database/hv_manager.dart';
+import 'package:flutter_video_player/providers/config_provider.dart';
+import 'package:provider/provider.dart';
 import 'pages/splash/splash_page.dart';
 import 'routes/route_manager.dart';
 
@@ -17,8 +18,13 @@ void main() {
   runZonedGuarded(
     () async {
       WidgetsFlutterBinding.ensureInitialized();
-      SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-          overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top]);
+      SystemChrome.setEnabledSystemUIMode(
+        SystemUiMode.manual,
+        overlays: [
+          SystemUiOverlay.bottom,
+          SystemUiOverlay.top,
+        ],
+      );
       //滚动性能优化
       // GestureBinding.instance.resamplingEnabled = true;
       SystemChrome.setPreferredOrientations([
@@ -29,7 +35,7 @@ void main() {
     },
     (error, StackTrace stack) {
       // ignore: avoid_print
-      print(error);print(stack);
+      print('发生错误了 $error --- $stack');
     },
     zoneSpecification: ZoneSpecification(
       // 拦截print
@@ -50,12 +56,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: const SplashScreen(),
-      onGenerateRoute: RouteManager.generateRoute,
-      showPerformanceOverlay: false,
-      debugShowCheckedModeBanner: false,
-      navigatorObservers: [CFNavigatorObservers()],
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => ConfigProvider(),
+        ),
+      ],
+      builder: (context, child) => MaterialApp(
+        home: const SplashScreen(),
+        onGenerateRoute: RouteManager.generateRoute,
+        showPerformanceOverlay: false,
+        debugShowCheckedModeBanner: false,
+        navigatorObservers: [CFNavigatorObservers()],
+      ),
     );
   }
 }

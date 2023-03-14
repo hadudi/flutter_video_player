@@ -18,7 +18,8 @@ class CategoryViewPage extends StatefulWidget {
   _CategoryViewPageState createState() => _CategoryViewPageState();
 }
 
-class _CategoryViewPageState extends State<CategoryViewPage> {
+class _CategoryViewPageState extends State<CategoryViewPage>
+    with AutomaticKeepAliveClientMixin {
   late final CategoryViewModel viewModel;
 
   bool select = false;
@@ -63,6 +64,7 @@ class _CategoryViewPageState extends State<CategoryViewPage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: Util.navBarHeight,
@@ -184,4 +186,7 @@ class _CategoryViewPageState extends State<CategoryViewPage> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

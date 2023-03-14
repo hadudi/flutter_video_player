@@ -28,8 +28,8 @@ class HaoKanShortVideoViewModel {
       return [];
     }
 
-    HaoKanShortVideoModel resModel =
-        HaoKanShortVideoModel.fromJson(data.model!.map['response']);
-    videoList.addAll(resModel.videos ?? []);
+    // HaoKanShortVideoModel resModel =
+    //     HaoKanShortVideoModel.fromJson(data.model!.map['response']);
+    // videoList.addAll(resModel.videos ?? []);
   }
 }
