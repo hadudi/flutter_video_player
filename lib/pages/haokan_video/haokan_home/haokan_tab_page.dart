@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import '../../../providers/vod_item_provider.dart';
 import '../../../routes/route_manager.dart';
 import 'cell_list.dart';
+import 'haokan_home_model.dart';
 import 'haokan_home_view_model.dart';
 
 class HaoKanHomeTabPage extends StatefulWidget {
@@ -76,9 +79,10 @@ class _HaoKanHomeTabPageState extends State<HaoKanHomeTabPage>
         ),
         itemCount: viewModel.pageModelList.length,
         itemBuilder: (ctx, index) {
-          // DramaItemModel model = viewModel.pageModelList[index];
           return GestureDetector(
             onTap: () {
+              DramaItemModel _model = viewModel.pageModelList[index];
+              context.read<VodItemProvider>().chooseVod(_model);
               Navigator.pushNamed(
                 context,
                 RouteManager.dramaDetail,

@@ -3,7 +3,7 @@ import 'package:flutter_video_player/http/http_manager.dart';
 import 'haokan_video_detail_model.dart';
 
 class DramaDetailViewModel {
-  late VodDetailData? videoInfoModel;
+  VodDetailData? videoInfoModel;
 
   /// 请求剧集信息
   Future<VodDetailData?> requestData({

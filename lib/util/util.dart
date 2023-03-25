@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-export 'r_sources.dart';
 
 class Util {
   Util._();
@@ -41,22 +40,6 @@ class Util {
 
   /// 屏幕高度
   static double get appHeight => _size.height;
-
-  /// 内容显示区域的高度
-  double contentHeight({
-    bool showNavBar = true,
-    bool showTabBar = true,
-  }) {
-    double height = appHeight;
-    if (showNavBar) {
-      height -= navgationBarHeight;
-    }
-    if (showTabBar) {
-      height -= tabBarHeight;
-    }
-// -1 分割线高度
-    return height - 1;
-  }
 
   static bool isMobile(String mobile) {
     if (mobile.isEmpty || mobile.length != 11) {

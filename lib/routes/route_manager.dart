@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_video_player/pages/cache/cache_page.dart';
 import 'package:flutter_video_player/pages/setting/setting_page.dart';
 
-import '../pages/drama_detail/page/drama_detail_page.dart';
+import '../pages/haokan_video/haokan_video_detail/drama_detail_page.dart';
 import '../pages/haokan_video/short_video/haokan_short_video_page.dart';
 import '../pages/tab_controller/tab_controller.dart';
 

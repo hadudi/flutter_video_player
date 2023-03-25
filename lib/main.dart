@@ -4,16 +4,15 @@
 
 import 'dart:async';
 
-import 'package:flutter/gestures.dart';
+// import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-// import 'package:flutter_video_player/database/hv_manager.dart';
 import 'package:flutter_video_player/providers/config_provider.dart';
+import 'package:flutter_video_player/providers/vod_item_provider.dart';
 import 'package:provider/provider.dart';
+// import 'pages/splash/splash_page.dart';
 import 'pages/splash/splash_page.dart';
 import 'routes/route_manager.dart';
-
-export 'package:flutter_video_player/util/r_sources.dart';
 
 void main() {
   runZonedGuarded(
@@ -27,7 +26,7 @@ void main() {
         ],
       );
       //滚动性能优化
-      GestureBinding.instance.resamplingEnabled = true;
+      // GestureBinding.instance.resamplingEnabled = true;
       SystemChrome.setPreferredOrientations([
         DeviceOrientation.portraitUp,
       ]);
@@ -61,6 +60,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (context) => ConfigProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => VodItemProvider(),
         ),
       ],
       builder: (context, child) => const MaterialApp(

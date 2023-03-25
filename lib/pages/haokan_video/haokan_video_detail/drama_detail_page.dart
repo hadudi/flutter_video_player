@@ -1,8 +1,11 @@
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_video_player/pages/haokan_video/haokan_video_detail/haokan_video_detail_model.dart';
 import 'package:flutter_video_player/pages/haokan_video/haokan_video_detail/haokan_video_detail_vm.dart';
+import 'package:flutter_video_player/providers/vod_item_provider.dart';
 import 'package:flutter_video_player/util/util.dart';
+import 'package:provider/provider.dart';
 // import '../views/small_screen_placeholder_view.dart';
 
 class DramaDetailPageView extends StatefulWidget {
@@ -156,6 +159,8 @@ class _DramaDetailPageViewState extends State<DramaDetailPageView> {
 
   @override
   Widget build(BuildContext context) {
+    var model = context.watch<VodItemProvider>().vodModel;
+    print(model?.videoName);
     return Scaffold(
         // body: ValueListenableBuilder<bool>(
         //   valueListenable: fullScreenNotify,
