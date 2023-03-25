@@ -54,15 +54,15 @@ class _HaoKanShortVideoItemViewState extends State<HaoKanShortVideoItemView>
   @override
   void didUpdateWidget(covariant HaoKanShortVideoItemView oldWidget) {
     try {
-      bool ret = oldWidget.model.id == widget.model.id;
-      if (!ret) {
-        _controller.pause();
-        _controller.dispose();
-        _controller =
-            VideoPlayerController.network(widget.model.previewUrlHttp!);
-      } else {
-        _controller.pause();
-      }
+      // bool ret = oldWidget.model.id == widget.model.id;
+      // if (!ret) {
+      //   _controller.pause();
+      //   _controller.dispose();
+      //   _controller =
+      //       VideoPlayerController.network(widget.model.previewUrlHttp!);
+      // } else {
+      //   _controller.pause();
+      // }
       // ignore: empty_catches
     } catch (e) {}
     super.didUpdateWidget(oldWidget);

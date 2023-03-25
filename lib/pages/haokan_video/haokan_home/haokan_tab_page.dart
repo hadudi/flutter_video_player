@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import '../../../models/models.dart';
 import '../../../routes/route_manager.dart';
-import '../../home/model/home_model.dart';
-import '../../home/views/cell_list.dart';
-import 'haokan_home_model.dart';
+import 'cell_list.dart';
 import 'haokan_home_view_model.dart';
 
 class HaoKanHomeTabPage extends StatefulWidget {
@@ -79,25 +76,16 @@ class _HaoKanHomeTabPageState extends State<HaoKanHomeTabPage>
         ),
         itemCount: viewModel.pageModelList.length,
         itemBuilder: (ctx, index) {
-          DramaItemModel model = viewModel.pageModelList[index];
+          // DramaItemModel model = viewModel.pageModelList[index];
           return GestureDetector(
             onTap: () {
               Navigator.pushNamed(
                 context,
                 RouteManager.dramaDetail,
-                arguments: DramaCoverModel(
-                  dramaId: model.firstEpisodes,
-                  coverUrl: model.verticalImage,
-                ),
               );
             },
             child: ListCell(
-              model: SectionContentModel(
-                int.tryParse('${model.firstEpisodes}'),
-                model.videoName,
-                model.verticalImage,
-                '${model.seriesNum}集${model.isFinish == '1' ? '全' : ' 连载中'}',
-              ),
+              model: viewModel.pageModelList[index],
             ),
           );
         },

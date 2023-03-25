@@ -1,12 +1,9 @@
-import 'dart:io';
 import 'package:dio/dio.dart';
 import 'http_response_model.dart';
 
 enum Method {
   get('get'),
-  post('post'),
-  delete('delete'),
-  put('put');
+  post('post');
 
   final String name;
   const Method(this.name);
@@ -16,13 +13,10 @@ enum NetApi {
   haokanHome,
   haokanDramaDetail,
   haokanShortVideoList,
-  bilibiliHotVideo,
 }
 
 enum BaseUrl {
-  bilibili('https://api.vc.bilibili.com'),
-  haokan('https://haokan.baidu.com'),
-  test('');
+  haokan('https://haokan.baidu.com');
 
   final String url;
   const BaseUrl(this.url);
@@ -31,16 +25,7 @@ enum BaseUrl {
 extension ApiOption on NetApi {
   /// The target's base `URL`.
   String get url {
-    switch (this) {
-      case NetApi.haokanHome:
-      case NetApi.haokanDramaDetail:
-      case NetApi.haokanShortVideoList:
-        return BaseUrl.haokan.url;
-      case NetApi.bilibiliHotVideo:
-        return BaseUrl.bilibili.url;
-      default:
-    }
-    return BaseUrl.test.url;
+    return BaseUrl.haokan.url;
   }
 
   /// The path to be appended to `baseURL` to form the full `URL`.
@@ -56,19 +41,13 @@ extension ApiOption on NetApi {
       case NetApi.haokanShortVideoList:
         path = '/web/video/feed';
         break;
-      case NetApi.bilibiliHotVideo:
-        path = '/link_draw/v2/Doc/index';
-        break;
     }
     return path;
   }
 
   /// The HTTP method used in the request.
   Method get method {
-    switch (this) {
-      default:
-        return Method.get;
-    }
+    return Method.get;
   }
 }
 
@@ -84,11 +63,11 @@ class HttpManager {
   // 私有化构造方法
   HttpManager._() {
     var options = BaseOptions(
-      baseUrl: BaseUrl.test.url,
+      baseUrl: BaseUrl.haokan.url,
       connectTimeout: 5000,
       receiveTimeout: 3000,
     );
-    dio = Dio(options);
+    _dio = Dio(options);
     // dio.interceptors.add(LogInterceptor(
     //   requestBody: true,
     //   responseBody: true,
@@ -98,10 +77,8 @@ class HttpManager {
 
   static final HttpManager _instance = HttpManager._();
 
-  static HttpManager get instance => _instance;
-
-  late NetApi api;
-  late Dio dio;
+  late NetApi _api;
+  late Dio _dio;
 
   late int timeOffset = 0;
 
@@ -109,8 +86,8 @@ class HttpManager {
     required NetApi req,
     Map<String, dynamic> queryParams = const {},
   }) {
-    api = req;
-    dio.options.baseUrl = api.url;
+    _api = req;
+    _dio.options.baseUrl = _api.url;
     var map = {
       'Connection': 'keep-alive',
       'User-Agent':
@@ -127,15 +104,15 @@ class HttpManager {
   }) async {
     try {
       var headers = handleHeader(req: req, queryParams: queryParams);
-      Response response = await dio.request(
+      Response response = await _dio.request(
         req.path,
         queryParameters: queryParams,
         options: Options(
           headers: headers,
-          method: api.method.name,
+          method: _api.method.name,
         ),
       );
-      if (response.statusCode == HttpStatus.ok) {
+      if (response.statusCode == 200) {
         ResponseModel model = ResponseModel.fromJson(response.data);
         return ResponseCallBack(model, null);
       } else {
@@ -156,7 +133,7 @@ class HttpManager {
     required NetApi req,
     Map<String, dynamic> queryParams = const {},
   }) async {
-    return await HttpManager.instance
+    return await HttpManager._instance
         .sendRequest(req: req, queryParams: queryParams);
   }
 }

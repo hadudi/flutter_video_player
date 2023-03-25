@@ -1,11 +1,14 @@
-class Data {
-  Data({
+class VodDetailData {
+  VodDetailData({
     this.apiData,
   });
 
   final ApiData? apiData;
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
+  factory VodDetailData.fromJson(
+    Map<String, dynamic> json,
+  ) =>
+      VodDetailData(
         apiData: ApiData.fromJson(json["apiData"]),
       );
 }
@@ -19,9 +22,16 @@ class ApiData {
   final CurVideoMeta? curVideoMeta;
   final LongVideoSideBar? longVideoSideBar;
 
-  factory ApiData.fromJson(Map<String, dynamic> json) => ApiData(
-        curVideoMeta: CurVideoMeta.fromJson(json["curVideoMeta"]),
-        longVideoSideBar: LongVideoSideBar.fromJson(json["longVideoSideBar"]),
+  factory ApiData.fromJson(
+    Map<String, dynamic> json,
+  ) =>
+      ApiData(
+        curVideoMeta: CurVideoMeta.fromJson(
+          json["curVideoMeta"],
+        ),
+        longVideoSideBar: LongVideoSideBar.fromJson(
+          json["longVideoSideBar"],
+        ),
       );
 }
 
@@ -30,94 +40,54 @@ class CurVideoMeta {
     this.id,
     this.title,
     this.poster,
-    this.fmplaycnt,
-    this.date,
-    this.timeLength,
-    this.duration,
     this.playurl,
     this.clarityUrl,
-    this.isLongVideo,
     this.dramaInfo,
-    this.allowPlay,
+    // this.videoInfo,
   });
 
   final String? id;
   final String? title;
   final String? poster;
-  final String? fmplaycnt;
-  final String? date;
-  final String? timeLength;
-  final int? duration;
-  final String? playurl;
-  final List<ClarityUrl>? clarityUrl;
-  final bool? isLongVideo;
+  final String? playurl; //默认播放地址， 可以取clarityUrl第一个
+  final List<ClarityUrl>? clarityUrl; //清晰度
   final DramaInfo? dramaInfo;
-  final int? allowPlay;
+  // final VideoInfo? videoInfo;
 
   factory CurVideoMeta.fromJson(Map<String, dynamic> json) => CurVideoMeta(
         id: json["id"],
         title: json["title"],
         poster: json["poster"],
-        fmplaycnt: json["fmplaycnt"],
-        date: json["date"],
-        timeLength: json["time_length"],
-        duration: json["duration"],
         playurl: json["playurl"],
         clarityUrl: List<ClarityUrl>.from(
-            json["clarityUrl"].map((x) => ClarityUrl.fromJson(x))),
-        isLongVideo: json["isLongVideo"],
+          json["clarityUrl"].map(
+            (x) => ClarityUrl.fromJson(x),
+          ),
+        ),
         dramaInfo: DramaInfo.fromJson(json["dramaInfo"]),
-        allowPlay: json["allow_play"],
       );
 }
 
 ///当前播放信息模型
 class ClarityUrl {
   ClarityUrl({
-    this.key,
-    this.rank,
     this.title,
     this.url,
-    this.videoBps,
-    this.vodVideoHw,
     this.videoSize,
-    this.vodMoovSize,
-    this.codecType,
   });
 
-  final String? key;
-  final int? rank;
-  final String? title;
-  final String? url;
-  final int? videoBps;
-  final String? vodVideoHw;
-  final int? videoSize;
-  final int? vodMoovSize;
-  final String? codecType;
+  final String? title; //清晰度名称
+  final String? url; //播放地址
+  final int? videoSize; //视频大小
 
-  factory ClarityUrl.fromJson(Map<String, dynamic> json) => ClarityUrl(
-        key: json["key"],
-        rank: json["rank"],
+  factory ClarityUrl.fromJson(
+    Map<String, dynamic> json,
+  ) =>
+      ClarityUrl(
         title: json["title"],
         url: json["url"],
-        videoBps: json["videoBps"],
-        vodVideoHw: json["vodVideoHW"],
         videoSize: json["videoSize"],
-        vodMoovSize: json["vodMoovSize"],
-        codecType: json["codec_type"],
       );
-
-  Map<String, dynamic> toJson() => {
-        "key": key,
-        "rank": rank,
-        "title": title,
-        "url": url,
-        "videoBps": videoBps,
-        "vodVideoHW": vodVideoHw,
-        "videoSize": videoSize,
-        "vodMoovSize": vodMoovSize,
-        "codec_type": codecType,
-      };
 }
 
 /// 影视信息模型
@@ -127,7 +97,6 @@ class DramaInfo {
     this.seriesNum,
     this.verticalImage,
     this.sumPlayCnt,
-    this.typeValue,
     this.typeName,
     this.introduction,
     this.currentNum,
@@ -138,7 +107,6 @@ class DramaInfo {
   final String? seriesNum;
   final String? verticalImage;
   final String? sumPlayCnt;
-  final String? typeValue;
   final String? typeName;
   final String? introduction;
   final String? currentNum;
@@ -149,7 +117,6 @@ class DramaInfo {
         seriesNum: json["seriesNum"],
         verticalImage: json["verticalImage"],
         sumPlayCnt: json["sumPlayCnt"],
-        typeValue: json["typeValue"],
         typeName: json["typeName"],
         introduction: json["introduction"],
         currentNum: json["currentNum"],
@@ -165,10 +132,15 @@ class LongVideoSideBar {
 
   final List<Episode> episodes;
 
-  factory LongVideoSideBar.fromJson(Map<String, dynamic> json) =>
+  factory LongVideoSideBar.fromJson(
+    Map<String, dynamic> json,
+  ) =>
       LongVideoSideBar(
         episodes: List<Episode>.from(
-            json["episodes"].map((x) => Episode.fromJson(x))),
+          json["episodes"].map(
+            (x) => Episode.fromJson(x),
+          ),
+        ),
       );
 }
 
@@ -187,3 +159,91 @@ class Episode {
         vid: json["vid"],
       );
 }
+
+// class CollectionInfo {
+//   String title;
+//   String collectionId;
+//   List<VideoInfo> videoInfo;
+
+//   CollectionInfo({this.title, this.collectionId, this.videoInfo});
+
+//   CollectionInfo.fromJson(Map<String, dynamic> json) {
+//     title = json['title'];
+//     collectionId = json['collection_id'];
+//     if (json['video_info'] != null) {
+//       videoInfo = new List<VideoInfo>();
+//       json['video_info'].forEach((v) {
+//         videoInfo.add(new VideoInfo.fromJson(v));
+//       });
+//     }
+//   }
+
+//   Map<String, dynamic> toJson() {
+//     final Map<String, dynamic> data = new Map<String, dynamic>();
+//     data['title'] = this.title;
+//     data['collection_id'] = this.collectionId;
+//     if (this.videoInfo != null) {
+//       data['video_info'] = this.videoInfo.map((v) => v.toJson()).toList();
+//     }
+//     return data;
+//   }
+// }
+
+// class VideoInfo {
+//   String title;
+//   String vid;
+//   String coverSrc;
+
+//   VideoInfo({this.title, this.vid, this.coverSrc});
+
+//   VideoInfo.fromJson(Map<String, dynamic> json) {
+//     title = json['title'];
+//     vid = json['vid'];
+//     coverSrc = json['cover_src'];
+//   }
+// }
+
+// class Rec {
+//   String cover;
+//   String horizontalCover;
+//   String title;
+//   String episodesNum;
+//   String firstEpisodes;
+//   String introduction;
+//   String sumPlayCnt;
+//   String authorName;
+
+//   Rec(
+//       {this.cover,
+//       this.horizontalCover,
+//       this.title,
+//       this.episodesNum,
+//       this.firstEpisodes,
+//       this.introduction,
+//       this.sumPlayCnt,
+//       this.authorName});
+
+//   Rec.fromJson(Map<String, dynamic> json) {
+//     cover = json['cover'];
+//     horizontalCover = json['horizontalCover'];
+//     title = json['title'];
+//     episodesNum = json['episodesNum'];
+//     firstEpisodes = json['firstEpisodes'];
+//     introduction = json['introduction'];
+//     sumPlayCnt = json['sumPlayCnt'];
+//     authorName = json['authorName'];
+//   }
+
+//   Map<String, dynamic> toJson() {
+//     final Map<String, dynamic> data = new Map<String, dynamic>();
+//     data['cover'] = this.cover;
+//     data['horizontalCover'] = this.horizontalCover;
+//     data['title'] = this.title;
+//     data['episodesNum'] = this.episodesNum;
+//     data['firstEpisodes'] = this.firstEpisodes;
+//     data['introduction'] = this.introduction;
+//     data['sumPlayCnt'] = this.sumPlayCnt;
+//     data['authorName'] = this.authorName;
+//     return data;
+//   }
+// }

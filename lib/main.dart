@@ -4,9 +4,10 @@
 
 import 'dart:async';
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_video_player/database/hv_manager.dart';
+// import 'package:flutter_video_player/database/hv_manager.dart';
 import 'package:flutter_video_player/providers/config_provider.dart';
 import 'package:provider/provider.dart';
 import 'pages/splash/splash_page.dart';
@@ -26,11 +27,11 @@ void main() {
         ],
       );
       //滚动性能优化
-      // GestureBinding.instance.resamplingEnabled = true;
+      GestureBinding.instance.resamplingEnabled = true;
       SystemChrome.setPreferredOrientations([
         DeviceOrientation.portraitUp,
       ]);
-      await HiveManager.initHive();
+      // await HiveManager.initHive();
       runApp(const MyApp());
     },
     (error, StackTrace stack) {
@@ -62,12 +63,11 @@ class MyApp extends StatelessWidget {
           create: (context) => ConfigProvider(),
         ),
       ],
-      builder: (context, child) => MaterialApp(
-        home: const SplashScreen(),
+      builder: (context, child) => const MaterialApp(
+        home: SplashScreen(),
         onGenerateRoute: RouteManager.generateRoute,
         showPerformanceOverlay: false,
         debugShowCheckedModeBanner: false,
-        navigatorObservers: [CFNavigatorObservers()],
       ),
     );
   }

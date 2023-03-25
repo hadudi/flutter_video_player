@@ -1,6 +1,6 @@
 
 class HomeResponseModel {
-    HomeResponseModel({
+    const HomeResponseModel({
         this.pageData,
         this.hasMore,
     });
@@ -15,7 +15,7 @@ class HomeResponseModel {
 }
 
 class DramaItemModel {
-    DramaItemModel({
+    const DramaItemModel({
         this.videoName,
         this.verticalImage,
         this.seriesNum,

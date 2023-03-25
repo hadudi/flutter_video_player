@@ -1,17 +1,14 @@
-// ignore_for_file: must_be_immutable
-
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_video_player/util/r_sources.dart';
 
-import '../model/home_model.dart';
+import 'haokan_home_model.dart';
 
 class ListCell extends StatelessWidget {
   const ListCell({
     Key? key,
     this.model,
   }) : super(key: key);
-  final SectionContentModel? model;
+  final DramaItemModel? model;
 
   @override
   Widget build(BuildContext context) {
@@ -23,18 +20,18 @@ class ListCell extends StatelessWidget {
         children: [
           Stack(
             children: <Widget>[
-              Container(
-                clipBehavior: Clip.hardEdge,
-                padding: EdgeInsets.zero,
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(4),
+              Hero(
+                tag: model!.verticalImage!,
+                child: Container(
+                  clipBehavior: Clip.hardEdge,
+                  padding: EdgeInsets.zero,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(4),
+                    ),
                   ),
-                ),
-                child: Hero(
-                  tag: model!.coverUrl!,
                   child: ExtendedImage.network(
-                    model?.coverUrl ?? '',
+                    model?.verticalImage ?? '',
                     fit: BoxFit.cover,
                     width: width,
                     height: height,
@@ -42,16 +39,6 @@ class ListCell extends StatelessWidget {
                     cacheHeight: height.toInt(),
                     cacheMaxAge: const Duration(days: 7),
                     enableLoadState: false,
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 0,
-                top: 0,
-                child: Visibility(
-                  visible: model?.vipFlag == true,
-                  child: Image.asset(
-                    R.Img.ic_vip,
                   ),
                 ),
               ),
@@ -82,7 +69,7 @@ class ListCell extends StatelessWidget {
                 right: 4,
                 bottom: 4,
                 child: Text(
-                  '${model?.score}',
+                  '${model?.seriesNum}集${model?.isFinish == "1" ? "全" : "连载中"}',
                   textScaleFactor: 1.0,
                   style: const TextStyle(
                     color: Colors.white,
@@ -96,7 +83,7 @@ class ListCell extends StatelessWidget {
             alignment: Alignment.topLeft,
             margin: const EdgeInsets.only(top: 6),
             child: Text(
-              model?.title ?? '',
+              model?.videoName ?? '',
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               textScaleFactor: 1.0,

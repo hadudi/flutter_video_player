@@ -34,19 +34,16 @@ dependencies:
   #请求库
   dio: ^4.0.3
   #加密库
-  crypto: ^3.0.1
+  # crypto: ^3.0.1
   #视频播放器
   video_player: ^2.2.19
-  #滑动选项
-  flutter_slidable: ^1.1.0
   #网页
   # webview_flutter: ^3.0.0
   # 机型等信息
   package_info_plus: ^1.3.0
   # NSUserDefaults on iOS, SharedPreferences on Android
   shared_preferences: ^2.0.11
-  # 滑动组件
-  flutter_swiper_null_safety: ^1.0.2
+  
   # 路径
   path_provider: ^2.0.8
   # hive数据库
@@ -58,7 +55,7 @@ dependencies:
   
   #图片处理库
   extended_image: ^6.0.3
-  waterfall_flow: any
+  # waterfall_flow: any
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -87,18 +84,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  assets:
-     - resource/json/
-     - resource/image/pic_banner_shadow.png
-     - resource/image/ic_vip.png
-     - resource/image/ic_playing.gif
-     - resource/image/pic_Avatar_n.png
-     - resource/image/pic_Avatar_h.png
-     - resource/image/splash_logo.png
-     - resource/image/cover_img.png
-     - resource/image/haokan_logo.png
-     - resource/image/splash_shake.png
-
+  # assets:
+  
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

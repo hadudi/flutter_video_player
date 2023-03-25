@@ -1,25 +1,19 @@
 import 'package:flutter/material.dart';
 
 enum PageType {
-  haokanVideo,
-  hotVideo,
-  category,
-  comment,
+  home,
+  video,
 }
 
 class JJTabItem {
   late PageType type;
   late String? title;
   late IconData icon;
-  late double iconSize;
-  late Color? color;
 
   JJTabItem({
     required this.type,
-    required this.title,
     required this.icon,
-    this.iconSize = 26.0,
-    this.color = Colors.greenAccent,
+    this.title,
   });
 }
 
@@ -44,18 +38,19 @@ class _CustomTabbarState extends State<CustomTabbar> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      backgroundColor: Colors.black,
       enableFeedback: false,
       currentIndex: _currentIndex,
-      selectedItemColor: Colors.greenAccent,
+      selectedItemColor: Colors.black,
       unselectedItemColor: Colors.blueGrey,
+      type: BottomNavigationBarType.shifting,
       items: widget.tabItems
           .map(
             (e) => BottomNavigationBarItem(
               tooltip: '',
               icon: Icon(
                 e.icon,
-                size: e.iconSize,
-                color: e.color,
+                // size: 30,
               ),
               label: e.title,
             ),

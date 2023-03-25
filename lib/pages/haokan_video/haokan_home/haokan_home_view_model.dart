@@ -1,7 +1,6 @@
 import '../../../http/http_manager.dart';
 import 'haokan_home_model.dart';
 
-
 enum DramaType {
   ///全部
   all(0, '全部'),

@@ -1,6 +1,6 @@
 class ResponseModel {
-  String? code;
-  String? msg;
+  int? errno;
+  String? error;
   final dynamic _data;
 
   ///data数据是对象，字典，map类型
@@ -29,8 +29,19 @@ class ResponseModel {
     return '';
   }
 
-  ResponseModel(this.code, this.msg, this._data);
-  factory ResponseModel.fromJson(Map<String, dynamic> json) {
-    return ResponseModel('${json['code']}', json['msg'], json['data']);
+  ResponseModel(
+    this.errno,
+    this.error,
+    this._data,
+  );
+  factory ResponseModel.fromJson(
+    Map<String, dynamic> json,
+  ) {
+    var model = ResponseModel(
+      json['errno'],
+      json['error'],
+      json['data'],
+    );
+    return model;
   }
 }
