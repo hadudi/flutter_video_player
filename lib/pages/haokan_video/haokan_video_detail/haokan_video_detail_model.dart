@@ -1,14 +1,14 @@
-class VodDetailData {
-  VodDetailData({
+class VodDetailModel {
+  VodDetailModel({
     this.apiData,
   });
 
   final ApiData? apiData;
 
-  factory VodDetailData.fromJson(
+  factory VodDetailModel.fromJson(
     Map<String, dynamic> json,
   ) =>
-      VodDetailData(
+      VodDetailModel(
         apiData: ApiData.fromJson(json["apiData"]),
       );
 }
@@ -78,7 +78,7 @@ class ClarityUrl {
 
   final String? title; //清晰度名称
   final String? url; //播放地址
-  final int? videoSize; //视频大小
+  final String? videoSize; //视频大小
 
   factory ClarityUrl.fromJson(
     Map<String, dynamic> json,
@@ -86,7 +86,7 @@ class ClarityUrl {
       ClarityUrl(
         title: json["title"],
         url: json["url"],
-        videoSize: json["videoSize"],
+        videoSize: json["videoSize"].toString(),
       );
 }
 

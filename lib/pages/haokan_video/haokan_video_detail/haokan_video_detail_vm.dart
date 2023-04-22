@@ -2,11 +2,11 @@ import 'package:flutter_video_player/http/http_manager.dart';
 
 import 'haokan_video_detail_model.dart';
 
-class DramaDetailViewModel {
-  VodDetailData? videoInfoModel;
+class VodDetailViewModel {
+  VodDetailModel? vodDetailModel;
 
   /// 请求剧集信息
-  Future<VodDetailData?> requestData({
+  Future<VodDetailModel?> requestData({
     required String dramaId,
   }) async {
     if (dramaId.length > 5) {
@@ -18,9 +18,9 @@ class DramaDetailViewModel {
         },
       );
       if (data.model != null) {
-        videoInfoModel = VodDetailData.fromJson(data.model!.map);
+        return VodDetailModel.fromJson(data.model!.map);
       }
     }
-    return videoInfoModel;
+    return null;
   }
 }

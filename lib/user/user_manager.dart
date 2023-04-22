@@ -3,7 +3,11 @@ import 'package:flutter_video_player/database/hv_manager.dart';
 import 'user_info_model.dart';
 
 class UserManger {
-  UserManger._();
+  UserManger._() {
+    Future.sync(() async {
+      await HiveManager.initHive();
+    });
+  }
 
   static final UserManger _instance = UserManger._();
   static UserManger get instance => _instance;

@@ -1,8 +1,5 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:flutter_video_player/routes/route_manager.dart';
-import 'package:flutter_video_player/user/user_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -28,10 +25,10 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   initState() {
     super.initState();
-    UserManger.instance.getLocalLogin();
+    // UserManger.instance.getLocalLogin();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 1500),
+      duration: const Duration(milliseconds: 1500),
     );
     _animation = Tween(begin: 1.0, end: 1.2).animate(_controller);
     _animation.addStatusListener((status) {
@@ -61,7 +58,7 @@ class _SplashScreenState extends State<SplashScreen>
               scale: _animation,
               child: Container(
                 color: Colors.white,
-                child: Icon(
+                child: const Icon(
                   Icons.play_circle,
                   color: Colors.lightBlue,
                   size: 100,

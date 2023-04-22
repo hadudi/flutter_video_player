@@ -2,9 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_video_player/pages/cache/cache_page.dart';
+import 'package:flutter_video_player/pages/haokan_video/haokan_video_detail/drama_detail_page.dart';
+import 'package:flutter_video_player/pages/haokan_video/haokan_video_detail/haokan_video_detail_page.dart';
 import 'package:flutter_video_player/pages/setting/setting_page.dart';
 
-import '../pages/haokan_video/haokan_video_detail/drama_detail_page.dart';
+// import '../pages/haokan_video/haokan_video_detail/drama_detail_page.dart';
 import '../pages/haokan_video/short_video/haokan_short_video_page.dart';
 import '../pages/tab_controller/tab_controller.dart';
 
@@ -21,7 +23,7 @@ class RouteManager {
         case root:
           return const RootTabViewController();
         case dramaDetail:
-          return const DramaDetailPageView();
+          return DramaDetailPageView(model: null);
         case setting:
           return const SettiingViewPage();
         case cache:

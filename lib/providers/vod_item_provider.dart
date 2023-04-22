@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_video_player/pages/haokan_video/haokan_home/haokan_home_model.dart';
+
+import '../pages/haokan_video/haokan_home/haokan_home_model.dart';
+// import '../pages/haokan_video/haokan_video_detail/haokan_video_detail_model.dart';
 
 class VodItemProvider extends ChangeNotifier {
   DramaItemModel? _vodModel;
 
   DramaItemModel? get vodModel => _vodModel;
-
-  chooseVod(DramaItemModel? vodModel) {
-    if (_vodModel != vodModel) {
-      _vodModel = vodModel;
-      notifyListeners();
-    }
+  Future chooseVod(DramaItemModel? vodModel) async {
+    _vodModel = vodModel;
+    notifyListeners();
   }
 }
